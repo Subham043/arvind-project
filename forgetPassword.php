@@ -53,12 +53,15 @@ if (isset($_POST['otp'])) {
     if ($res) {
         $subject = "Karnataka Tourism Otp";
         $content = "Your Otp is : $otp";
-        phpmailsend($email, $subject, $content);
+        if (phpmailsend($email, $subject, $content)) {
 
-        echo '<script>document.getElementById("msg").innerHTML = "Password sent to Your Email"</script>';
+            echo '<script>document.getElementById("msg").innerHTML = "Password sent to Your Email"</script>';
 
-        echo "<script>
+            echo "<script>
               window.location='./changepassword.php?email=$email'        </script>";
+        } else {
+            message("Something Went Wrong email", "danger");
+        }
     } else {
         echo "<script>alert('User Does not Exist Please register..');
               window.location='./login.php'

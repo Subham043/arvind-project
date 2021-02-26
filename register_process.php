@@ -51,7 +51,7 @@ if ($conn->query($sql_1)) {
 				<h2>Thank you for Registering.</h2>
 				<p>Your Account:</p>
 				<p>Email: " . $username . "</p>
-				<p>Password: " . $password . "</p>
+				<p>Password: " . $_POST['password'] . "</p>
 				<p>Please click the link below to activate your account.</p>
 				<h4><a href='http://localhost/online_melody/activate.php?uid=$uid&code=$code'>Activate My Account</h4>
 				</body>
