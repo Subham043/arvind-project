@@ -19,30 +19,12 @@ require_once("files/header.php"); ?>
 					<a href="forgetPassword.php" class="text-primary">Forget Password</a>
 				</div>
 				<button type="submit" class="btn btn-dark float-right mt-2">Login</button>
+				<div class="form-group">
+					<span class="text-dark">New User?</span><a href="register.php" class="text-primary">Click here to register</a>
+				</div>
 			</form>
 		</div>
-		<div class="col-md-6 mt-2">
-			<h2 class="text-center text-dark mb-2">Register</h2>
-			<form action="register_process.php" method="post">
-				<div class="form-group">
-					<label for="first_name">First Name</label>
-					<input type="text" class="form-control" id="first_name" name="first_name" required="" placeholder="Enter first name">
-				</div>
-				<div class="form-group">
-					<label for="last_name">Last Name</label>
-					<input type="text" class="form-control" id="last_name" name="last_name" required="" placeholder="Enter last name">
-				</div>
-				<div class="form-group">
-					<label for="username">Email</label>
-					<input type="email" class="form-control" id="username" name="username" required="" placeholder="Enter Email">
-				</div>
-				<div class="form-group">
-					<label for="Password">Password</label>
-					<input type="password" class="form-control" id="Password" name="password" required="" placeholder="Password">
-				</div>
-				<button type="submit" class="btn btn-dark float-right mt-2">Register</button>
-			</form>
-		</div>
+
 	</div>
 
 
