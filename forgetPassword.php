@@ -51,7 +51,7 @@ if (isset($_POST['otp'])) {
         $res = mysqli_query($conn, $sql);
     }
     if ($res) {
-        $subject = "Karnataka Tourism Otp";
+        $subject = "Online Melody Otp";
         $content = "Your Otp is : $otp";
         if (phpmailsend($email, $subject, $content)) {
 

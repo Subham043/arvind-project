@@ -255,13 +255,13 @@ function phpmailsend($to, $subject, $content)
 	$mail->IsSMTP();
 	$mail->Host = 'smtp.gmail.com'; //
 	$mail->SMTPAuth = TRUE;
-	$mail->Username = "karnatakatourism20@gmail.com";
-	$mail->Password = "karnatakatourism";
+	$mail->Username = "onlinemelody4@gmail.com";
+	$mail->Password = "online_melody7";
 	$mail->SMTPSecure = 'ssl'; // tls or ssl 
 	$mail->Port     = "465"; //465
 
 	$mail->SMTPDebug = 0;
-	$mail->SetFrom('karnatakatourism20@gmail.com', "Karnatak Tourism");
+	$mail->SetFrom('onlinemelody4@gmail.com', "Online Melody");
 
 	$mail->AddAddress($to); //we can add here multiple email 
 
