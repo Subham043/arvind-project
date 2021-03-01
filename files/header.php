@@ -29,7 +29,7 @@
 				<li class="nav-item">
 					<?php if (isset($_SESSION['user'])) { ?>
 						<!-- <a class="nav-link text-danger" href="logount_process.php">Logout</a> -->
-						<a class="nav-link text-light" href="my_account.php">My Account</a>
+						<a class="nav-link text-light" href="#">My Account</a>
 					<?php } else { ?>
 						<a class="nav-link text-light" href="login.php">Login</a>
 					<?php } ?>
