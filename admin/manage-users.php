@@ -116,7 +116,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 												<td><?php echo htmlentities($result['reg_date']); ?></td>
 												<td><?php echo htmlentities($result['last_seen']); ?></td>
 												<td><a href="delete.php?userid=<?php echo $result['user_id'] ?>" class="btn btn-danger">Delete User</a></td>
-												<td><a href="block.php?userid=<?php echo $result['user_id'] ?>" class="btn btn-danger">View User</a></td>
+												<td><a href="block.php?userid=<?php echo $result['user_id'] ?>" class="btn btn-danger">Block User User</a></td>
 											</tr>
 									<?php $cnt = $cnt + 1;
 										}

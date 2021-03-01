@@ -9,7 +9,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 	<html>
 
 	<head>
-		<title>TMS | Admin Dashboard</title>
+		<title>Admin Dashboard</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<script type="application/x-javascript">
@@ -33,6 +33,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 		<!-- //jQuery -->
 		<link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css' />
 		<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
 		<!-- lined-icons -->
 		<link rel="stylesheet" href="css/icon-font.min.css" type='text/css' />
 		<!-- //lined-icons -->
@@ -44,13 +45,16 @@ if (strlen($_SESSION['alogin']) == 0) {
 			<div class="left-content">
 				<div class="mother-grid-inner">
 					<!--header start here-->
-					
+					<?php include './includes/header.php' ?>
 				</div>
 			</div>
 
 
 			<div class="clearfix"></div>
 		</div>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>DashBoard</li>
+		</ol>
 		<!--//four-grids here-->
 
 
