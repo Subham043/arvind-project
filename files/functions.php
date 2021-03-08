@@ -162,6 +162,18 @@ function get_song_views($conn, $song_id)
 	return $data['view_count'];
 }
 
+function check_likes($conn, $user_id, $song_id)
+{
+	$ch_like = mysqli_query($conn, "SELECT * From likes where user_id ='$user_id' and songs_id = '$song_id'");
+	return (mysqli_num_rows($ch_like) > 0);
+}
+function get_likes($conn, $song_id)
+{
+	$sql = "SELECT Count(*) as total from likes where songs_id = '$song_id' ";
+	$res = mysqli_query($conn, $sql);
+	$likes = $res->fetch_assoc();
+	return $likes['total'];
+}
 
 // Get all songs
 function get_all_songs($conn)
@@ -184,7 +196,9 @@ function get_all_songs($conn)
 function record_view($conn, $song_id, $user_id)
 {
 	$view_time = time();
-	$sql = "INSERT INTO `views` 
+	$res = mysqli_query($conn, "SELECT * FROM views where user_id = '$user_id'");
+	if (mysqli_num_rows($res) <= 0) {
+		$sql = "INSERT INTO `views` 
 			(song_id,user_id,view_time)
 			VALUES 
 			(
@@ -192,8 +206,9 @@ function record_view($conn, $song_id, $user_id)
 			)
 	";
 
-	if ($conn->query($sql)) {
-	} else {
+		if ($conn->query($sql)) {
+		} else {
+		}
 	}
 }
 

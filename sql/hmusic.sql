@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2021 at 07:47 AM
+-- Generation Time: Mar 08, 2021 at 02:12 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -20,6 +20,25 @@ SET time_zone = "+00:00";
 --
 -- Database: `hmusic`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `password`) VALUES
+(1, 'admin', 'admin123');
 
 -- --------------------------------------------------------
 
@@ -48,6 +67,28 @@ CREATE TABLE `downloads` (
   `download_time` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `downloads`
+--
+
+INSERT INTO `downloads` (`download_id`, `user_id`, `song_id`, `download_time`) VALUES
+(12, 14, 17, '1615008422'),
+(13, 14, 14, '1615008541'),
+(14, 14, 14, '1615009022'),
+(15, 14, 14, '1615009036');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `likes`
+--
+
+CREATE TABLE `likes` (
+  `id` int(11) NOT NULL,
+  `songs_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- --------------------------------------------------------
 
 --
@@ -56,19 +97,12 @@ CREATE TABLE `downloads` (
 
 CREATE TABLE `songs` (
   `song_id` int(11) NOT NULL,
-  `song_mp3` text DEFAULT NULL,
+  `song_mp3` varchar(1000) DEFAULT NULL,
   `song_photo` text DEFAULT NULL,
   `song_date` text DEFAULT NULL,
   `aritst_id` varchar(35) DEFAULT NULL,
   `song_name` varchar(225) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `songs`
---
-
-INSERT INTO `songs` (`song_id`, `song_mp3`, `song_photo`, `song_date`, `aritst_id`, `song_name`) VALUES
-(13, '1614318798_9537143680204_Vamshada_Gourava.mp3', '1614318798_69224767639766_AlbumArtSmall.jpg', NULL, '11', 'kavite');
 
 -- --------------------------------------------------------
 
@@ -89,14 +123,6 @@ CREATE TABLE `users` (
   `code` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`user_id`, `username`, `password`, `first_name`, `last_name`, `reg_date`, `last_seen`, `photo`, `verify`, `code`) VALUES
-(10, 'mahi.manthu10@gmail.com', '$2y$10$JYYjQfZQgcJK8PL.mnTJ7OnuWIYxGvoZ1MFDauVicOzXWCBwa8VMu', 'MAHANTESH', NULL, NULL, '1614318296', '', 0, ''),
-(11, 'jobs.manthu10@gmail.com', '$2y$10$Ri2pCW6OLqWwKuZP9kex0.7VTR0S0B0qeu7rlH/jENiT9PEj0f3wm', 'a', NULL, NULL, '1614318600', '', 0, '');
-
 -- --------------------------------------------------------
 
 --
@@ -115,12 +141,41 @@ CREATE TABLE `views` (
 --
 
 INSERT INTO `views` (`view_id`, `user_id`, `song_id`, `view_time`) VALUES
-(41, 11, 13, '1614318802'),
-(43, 11, 13, '1614318836');
+(44, 14, 14, '1614614095'),
+(45, 14, 14, '1615008037'),
+(46, 14, 14, '1615008039'),
+(47, 14, 14, '1615008039'),
+(48, 14, 14, '1615008109'),
+(51, 14, 14, '1615008315'),
+(53, 14, 17, '1615008410'),
+(56, 14, 14, '1615008529'),
+(57, 14, 14, '1615008539'),
+(58, 14, 14, '1615008582'),
+(59, 14, 17, '1615008832'),
+(60, 14, 17, '1615008835'),
+(61, 14, 17, '1615008857'),
+(62, 14, 17, '1615008859'),
+(63, 14, 17, '1615008953'),
+(64, 14, 17, '1615008967'),
+(65, 14, 14, '1615008971'),
+(66, 14, 14, '1615009021'),
+(67, 14, 14, '1615009048'),
+(68, 14, 14, '1615011573'),
+(69, 14, 14, '1615011603'),
+(70, 14, 14, '1615011757'),
+(71, 14, 14, '1615012548'),
+(72, 14, 14, '1615013126'),
+(73, 15, 14, '1615124061');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `artist`
@@ -133,6 +188,12 @@ ALTER TABLE `artist`
 --
 ALTER TABLE `downloads`
   ADD PRIMARY KEY (`download_id`);
+
+--
+-- Indexes for table `likes`
+--
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `songs`
@@ -157,34 +218,46 @@ ALTER TABLE `views`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `artist`
 --
 ALTER TABLE `artist`
-  MODIFY `artist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `artist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `downloads`
 --
 ALTER TABLE `downloads`
-  MODIFY `download_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `download_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `likes`
+--
+ALTER TABLE `likes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `songs`
 --
 ALTER TABLE `songs`
-  MODIFY `song_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `song_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `views`
 --
 ALTER TABLE `views`
-  MODIFY `view_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `view_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

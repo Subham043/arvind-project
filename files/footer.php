@@ -1,5 +1,5 @@
-	<div style="border-radius:5px" class="bg-dark container">
-		<footer class="border-top border-dark row mt-3 mt-md-5 pt-2">
+	<div style="border-radius:5px" id="footer" class="bg-dark container">
+		<footer class="border-top border-dark row  pt-2">
 			<div class="col-md-3  text-center text-light">
 				onMelody - 2021
 			</div>

@@ -24,6 +24,77 @@ $song = $_GET['song'];
 $s = get_top_song_by_song_id($conn, $song);
 $artist_id = $s['artist_id'];
 ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+	$(function() {
+		var songid = $('#song_id').val();
+		var user = $('#user').val();
+		console.log(songid);
+		console.log(user);
+		$('#dislikedbody').prop("hidden", true);
+		$('#likedbody').prop("hidden", false);
+
+		$('#liked').click(function() {
+			// x.classList.toggle("fa-thumbs-down");
+			$('#dislikedbody').prop("hidden", false);
+			$('#likedbody').prop("hidden", true);
+
+			$.ajax({
+				url: 'likes.php',
+				type: 'post',
+				data: {
+					'liked': 1,
+					'songid': songid,
+					'user_id': user
+				},
+				cache: false,
+				success: function(dataResult) {
+					var dataResult = JSON.parse(dataResult);
+					if (dataResult.statusCode == 200) {
+						//	$("#butsave").removeAttr("disabled");
+						//	$('#fupForm').find('input:text').val('');
+						// $("#success").show();
+						// $('#success').html('Data added successfully !');
+					} else if (dataResult.statusCode == 201) {
+						alert("Error occured !");
+					}
+
+				}
+			});
+		});
+
+		$('#disliked').click(function() {
+			// x.classList.toggle("fa-thumbs-down");
+			$('#dislikedbody').prop("hidden", true);
+			$('#likedbody').prop("hidden", false);
+			$.ajax({
+				url: 'likes.php',
+				type: 'post',
+				data: {
+					'liked': 2,
+					'songid': songid,
+					'user_id': user
+				},
+				cache: false,
+				success: function(dataResult) {
+					var dataResult = JSON.parse(dataResult);
+					if (dataResult.statusCode == 200) {
+						//	$("#butsave").removeAttr("disabled");
+						//	$('#fupForm').find('input:text').val('');
+						// $("#success").show();
+						// $('#success').html('Data added successfully !');
+					} else if (dataResult.statusCode == 201) {
+						alert("Error occured !");
+					}
+
+				}
+			});
+		});
+
+	});
+</script>
 <!-- 
   [artist_id] => 4
     [artist_name] => Sheebah Karungi
@@ -66,6 +137,20 @@ $artist_id = $s['artist_id'];
 						<div class="col-12">
 							<b>Downloads: </b> <?php echo $s['download_count']; ?>
 						</div>
+						<input type="hidden" value="<?php echo $s['song_id'] ?>" name="" id="song_id">
+
+						<input type="hidden" value="<?php echo $user_id ?>" name="" id="user">
+
+						<div class="col-12">
+							<?php
+							if (check_likes($conn, $user_id, $song_id)) { ?>
+								<span>liked</span>
+							<?php
+							}
+							?>
+							<span id="likedbody"><a href="#" id="liked" class="fa fa-thumbs-up"></a></span>
+							<span id="dislikedbody"><a href="#" id="disliked" class="fa fa-thumbs-down"></a></span>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -74,6 +159,7 @@ $artist_id = $s['artist_id'];
 						<source src="uploads/<?php echo $s['song_mp3']; ?>" type="audio/mpeg">
 						Your browser does not support the audio element.
 					</audio>
+					<p id="success"></p>
 				</div>
 				<div class="col-md-2">
 					<a class="btn btn-dark btn-block" target="_blank" href="download.php?song=<?= $song_id ?>">Download Mp3</a>
@@ -124,6 +210,5 @@ $artist_id = $s['artist_id'];
 
 
 </div>
-
 
 <?php require_once("files/footer.php"); ?>

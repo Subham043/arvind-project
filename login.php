@@ -3,7 +3,7 @@ session_start();
 require_once("files/header.php"); ?>
 <div class="container pt-2 pt-md-5">
 
-	<div class="row">
+	<div class="row ml-5 mb-3">
 		<div class="col-md-6 mt-2">
 			<h2 class="text-center text-dark mb-2">Login</h2>
 			<form action="login_process.php" method="post">
@@ -18,9 +18,9 @@ require_once("files/header.php"); ?>
 				<div class="form-group">
 					<a href="forgetPassword.php" class="text-primary">Forget Password</a>
 				</div>
-				<button type="submit" class="btn btn-dark float-right mt-2">Login</button>
+				<button type="submit" class="btn btn-primary float-right mt-2">Login</button>
 				<div class="form-group">
-					<span class="text-dark">New User?</span><a href="register.php" class="text-primary">Click here to register</a>
+					<span class="text-primary">New User?</span><a href="register.php" >Click here to register</a>
 				</div>
 			</form>
 		</div>
