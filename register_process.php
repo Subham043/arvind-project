@@ -29,13 +29,15 @@ $sql_1 = "INSERT INTO users (
  				last_seen,
  				password,
  				first_name, 
- 				photo
+ 				photo,
+				 block_status
  				) VALUES (
  				'{$username}',
  				'{$last_seen}',
  				'{$password}',
  				'{$first_name}',
- 				''
+ 				'',
+				 0
  			)";
 
 if ($conn->query($sql_1)) {
@@ -51,7 +53,6 @@ if ($conn->query($sql_1)) {
 				<h2>Thank you for Registering.</h2>
 				<p>Your Account:</p>
 				<p>Email: " . $username . "</p>
-				<p>Password: " . $_POST['password'] . "</p>
 				<p>Please click the link below to activate your account.</p>
 				<h4><a href='http://localhost/online_melody/activate.php?uid=$uid&code=$code'>Activate My Account</h4>
 				</body>

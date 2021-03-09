@@ -12,10 +12,16 @@ if (empty($u)) {
 
 $hash = $u['password'];
 if (password_verify($password, $hash)) {
-	message("Your account was logged in successfully", "success");
-	$_SESSION['user'] = $u;
-	header("Location: my_account.php");
-	die();
+	if ($u['block_status'] == 0) {
+		message("Your account was logged in successfully", "success");
+		$_SESSION['user'] = $u;
+		header("Location: my_account.php");
+		die();
+	} else {
+
+		message("Your Account Was Blocked by the Admin,Please Contact for Further Procedures ", "danger");
+		header('location: login.php');
+	}
 } else {
 	message("You entered wrong password.", "danger");
 	header('location: login.php');

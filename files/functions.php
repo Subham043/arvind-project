@@ -180,7 +180,7 @@ function get_all_songs($conn)
 {
 	$sql = "SELECT * FROM artist,songs
 			WHERE
-				songs.aritst_id = artist.artist_id
+				songs.aritst_id = artist.artist_id and verify=1
 			ORDER BY artist_name ASC";
 	$res = $conn->query($sql);
 	$songs = array();

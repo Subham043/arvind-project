@@ -115,8 +115,19 @@ if (strlen($_SESSION['alogin']) == 0) {
 												<td><?php echo htmlentities($result['first_name']) . " " . htmlentities($result['last_name']); ?></td>
 												<td><?php echo htmlentities($result['reg_date']); ?></td>
 												<td><?php echo htmlentities($result['last_seen']); ?></td>
+												<input type="hidden" id="user_id" value="<?php echo $result['user_id'] ?>">
 												<td><a href="delete.php?userid=<?php echo $result['user_id'] ?>" class="btn btn-danger">Delete User</a></td>
-												<td><a href="block.php?userid=<?php echo $result['user_id'] ?>" class="btn btn-danger">Block User User</a></td>
+												<?php
+												if ($result['block_status'] == 0) { ?>
+													<td><a href="#" id="blockuser" class="btn btn-danger">Block User</a></td>
+												<?php
+												} else {
+												?>
+													<td><a href="#" id="unblockuser" class="btn btn-danger">UnBlock User</a></td>
+
+												<?php
+												}
+												?>
 											</tr>
 									<?php $cnt = $cnt + 1;
 										}
@@ -138,6 +149,42 @@ if (strlen($_SESSION['alogin']) == 0) {
 									$(".header-main").addClass("fixed");
 								} else {
 									$(".header-main").removeClass("fixed");
+								}
+							});
+
+						});
+						$(document).on('click', '#blockuser', function(e) {
+							e.preventDefault();
+							var user_id = $('#user_id').val();
+							var block = 1;
+							$.ajax({
+								url: "blockuser.php",
+								type: "post",
+
+								data: {
+									user_id: user_id,
+									block: block
+								},
+								success: function(data) {
+									window.location = 'manage-users.php';
+								}
+							});
+
+						});
+						$(document).on('click', '#unblockuser', function(e) {
+							e.preventDefault();
+							var user_id = $('#user_id').val();
+							var block = 0;
+							$.ajax({
+								url: "blockuser.php",
+								type: "post",
+
+								data: {
+									user_id: user_id,
+									block: block
+								},
+								success: function(data) {
+									window.location = 'manage-users.php';
 								}
 							});
 

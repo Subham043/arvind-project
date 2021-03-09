@@ -42,7 +42,7 @@
 				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
 				<?php if (isset($_SESSION['user'])) { ?>
-					<a class="nav-link text-danger" href="logount_process.php">Logout</a>
+					<a class="nav-link ml-3 btn btn-sm btn-danger btn-outline-light" style="border-radius:15px" href=" logount_process.php">Logout</a>
 				<?php } ?>
 			</form>
 		</div>

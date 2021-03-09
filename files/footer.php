@@ -10,8 +10,10 @@
 				<a href="#" title="" class="text-light">instagram</a>
 			</div>
 			<div class="col-md-3 text-center">
-				<a href="#" title="" class="text-light">YouTube</a>
+				<!-- <a href="#" title="" class="text-light">YouTube</a> -->
+				<a href="admin/" title="" class="ml-2 text-light">Admin</a>
 			</div>
+
 		</footer>
 	</div>
 	</body>
