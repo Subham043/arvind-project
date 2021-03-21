@@ -17,7 +17,6 @@ if (isset($_POST['change'])) {
         }
     }
 }
-
 require './files/header.php';
 ?>
 <div style="vertical-align:center" class="container">

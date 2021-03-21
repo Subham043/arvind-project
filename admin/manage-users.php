@@ -91,49 +91,52 @@ if (strlen($_SESSION['alogin']) == 0) {
 					<div class="agile-tables">
 						<div class="w3l-table-info">
 							<h2>Manage Users</h2>
-							<table id="table">
-								<thead>
-									<tr>
-										<th>#</th>
-										<th>Email</th>
-										<th>Name</th>
-										<th>Registration Date </th>
-										<th>Last Seen</th>
-										<th></th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php $sql = "SELECT * from users";
-									$query = mysqli_query($conn, $sql);
-									$cnt = 1;
-									if (mysqli_num_rows($query) > 0) {
-										while ($result = $query->fetch_assoc()) {				?>
-											<tr>
-												<td><?php echo htmlentities($cnt); ?></td>
-												<td><?php echo htmlentities($result['username']); ?></td>
-												<td><?php echo htmlentities($result['first_name']) . " " . htmlentities($result['last_name']); ?></td>
-												<td><?php echo htmlentities($result['reg_date']); ?></td>
-												<td><?php echo htmlentities($result['last_seen']); ?></td>
-												<input type="hidden" id="user_id" value="<?php echo $result['user_id'] ?>">
-												<td><a href="delete.php?userid=<?php echo $result['user_id'] ?>" class="btn btn-danger">Delete User</a></td>
-												<?php
-												if ($result['block_status'] == 0) { ?>
-													<td><a href="#" id="blockuser" class="btn btn-danger">Block User</a></td>
-												<?php
-												} else {
-												?>
-													<td><a href="#" id="unblockuser" class="btn btn-danger">UnBlock User</a></td>
+							<div class="table-responsive">
 
-												<?php
-												}
-												?>
-											</tr>
-									<?php $cnt = $cnt + 1;
-										}
-									} ?>
-								</tbody>
-							</table>
+								<table id="table">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Email</th>
+											<th>Name</th>
+											<th>Registration Date </th>
+											<th>Last Seen</th>
+											<th></th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php $sql = "SELECT * from users";
+										$query = mysqli_query($conn, $sql);
+										$cnt = 1;
+										if (mysqli_num_rows($query) > 0) {
+											while ($result = $query->fetch_assoc()) {				?>
+												<tr>
+													<td><?php echo htmlentities($cnt); ?></td>
+													<td><?php echo htmlentities($result['username']); ?></td>
+													<td><?php echo htmlentities($result['first_name']) . " " . htmlentities($result['last_name']); ?></td>
+													<td><?php echo htmlentities($result['reg_date']); ?></td>
+													<td><?php echo htmlentities($result['last_seen']); ?></td>
+													<input type="hidden" id="user_id" value="<?php echo $result['user_id'] ?>">
+													<td><a href="delete.php?userid=<?php echo $result['user_id'] ?>" class="btn btn-danger">Delete User</a></td>
+													<?php
+													if ($result['block_status'] == 0) { ?>
+														<td><a href="#" id="blockuser" class="btn btn-danger">Block User</a></td>
+													<?php
+													} else {
+													?>
+														<td><a href="#" id="unblockuser" class="btn btn-danger">UnBlock User</a></td>
+
+													<?php
+													}
+													?>
+												</tr>
+										<?php $cnt = $cnt + 1;
+											}
+										} ?>
+									</tbody>
+								</table>
+							</div>
 						</div>
 						</table>
 

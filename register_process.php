@@ -20,8 +20,9 @@ if (!empty($u)) {
 	die();
 }
 
-$last_seen = time();
-$reg_date = time();
+$last_seen = date('Y-m-d');
+$reg_date =
+	date('Y-m-d');
 $set = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 $code = substr(str_shuffle($set), 0, 12);
 $sql_1 = "INSERT INTO users (
@@ -30,14 +31,16 @@ $sql_1 = "INSERT INTO users (
  				password,
  				first_name, 
  				photo,
-				 block_status
+				 block_status,
+				 reg_date
  				) VALUES (
  				'{$username}',
  				'{$last_seen}',
  				'{$password}',
  				'{$first_name}',
  				'',
-				 0
+				 '0',
+				 '$reg_date'
  			)";
 
 if ($conn->query($sql_1)) {

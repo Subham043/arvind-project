@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 09, 2021 at 05:52 PM
+-- Generation Time: Mar 21, 2021 at 05:33 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -67,15 +67,16 @@ CREATE TABLE `downloads` (
   `download_time` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `downloads`
+-- Table structure for table `genre`
 --
 
-INSERT INTO `downloads` (`download_id`, `user_id`, `song_id`, `download_time`) VALUES
-(12, 14, 17, '1615008422'),
-(13, 14, 14, '1615008541'),
-(14, 14, 14, '1615009022'),
-(15, 14, 14, '1615009036');
+CREATE TABLE `genre` (
+  `id` int(11) NOT NULL,
+  `type` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -103,16 +104,9 @@ CREATE TABLE `songs` (
   `aritst_id` varchar(35) DEFAULT NULL,
   `song_name` varchar(225) NOT NULL,
   `verify` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `type_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `songs`
---
-
-INSERT INTO `songs` (`song_id`, `song_mp3`, `song_photo`, `song_date`, `aritst_id`, `song_name`, `verify`, `user_id`) VALUES
-(18, '1615300389_37847942263722_fa926.mp3', '1615300389_93739567616687_AlbumArtSmall.jpg', NULL, '14', 'kavite', 1, 16),
-(19, '1615308349_32536477772883_51702.mp3', '1615308349_86998561388276_AlbumArtSmall.jpg', NULL, '14', 'kavite', 0, 18);
 
 -- --------------------------------------------------------
 
@@ -133,13 +127,6 @@ CREATE TABLE `users` (
   `code` varchar(40) NOT NULL,
   `block_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`user_id`, `username`, `password`, `first_name`, `last_name`, `reg_date`, `last_seen`, `photo`, `verify`, `code`, `block_status`) VALUES
-(18, 'mahi.manthu10@gmail.com', '$2y$10$6K2XM8CF38qpoCm6lZ9osuk6AcOXEzo6VzP80n2ENzYf7DvaNtQXK', 'MAHANTESH', NULL, NULL, '1615308311', '', 0, '', 0);
 
 -- --------------------------------------------------------
 
@@ -175,6 +162,12 @@ ALTER TABLE `artist`
 --
 ALTER TABLE `downloads`
   ADD PRIMARY KEY (`download_id`);
+
+--
+-- Indexes for table `genre`
+--
+ALTER TABLE `genre`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `likes`
@@ -214,37 +207,43 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `artist`
 --
 ALTER TABLE `artist`
-  MODIFY `artist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `artist_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `downloads`
 --
 ALTER TABLE `downloads`
-  MODIFY `download_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `download_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `genre`
+--
+ALTER TABLE `genre`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `songs`
 --
 ALTER TABLE `songs`
-  MODIFY `song_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `song_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `views`
 --
 ALTER TABLE `views`
-  MODIFY `view_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `view_id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,4 +1,5 @@
 <?php
+$conn = new mysqli("localhost", "root", "", "hmusic");
 session_start();
 include("files/functions.php");
 $username = $_POST['username'];
@@ -15,7 +16,9 @@ if (password_verify($password, $hash)) {
 	if ($u['block_status'] == 0) {
 		message("Your account was logged in successfully", "success");
 		$_SESSION['user'] = $u;
-		header("Location: my_account.php");
+		$d = date("Y-m-d");
+		$update_lastseen = mysqli_query($conn, "UPDATE users set last_seen='$d' where username='$username'");
+		header("Location: admin_song_upload.php");
 		die();
 	} else {
 

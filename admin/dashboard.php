@@ -36,6 +36,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 		<!-- lined-icons -->
 		<link rel="stylesheet" href="css/icon-font.min.css" type='text/css' />
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 		<!-- //lined-icons -->
 	</head>
 
@@ -46,29 +48,75 @@ if (strlen($_SESSION['alogin']) == 0) {
 				<div class="mother-grid-inner">
 					<!--header start here-->
 					<?php include './includes/header.php' ?>
+
+					<?php
+					include '../files/functions.php';
+
+					$s = count(get_all_songs($conn));
+					?>
+
+
+					<div class="clearfix"></div>
+				</div>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>DashBoard</li>
+				</ol>
+				<!--//four-grids here-->
+				<div class="col col-md-12">
+					<div class="row">
+						<div class="col col-md-5">
+							<h4>Today Stats:</h4>
+							Visits<span class="pull-right strong">
+								<?php
+								$visit = mysqli_query($conn, "SELECT count(*) as counts from views");
+								$v = $visit->fetch_assoc();
+								echo $v['counts'];
+								$views = $v['counts'];
+								?>
+							</span>
+							<div class="progress">
+								<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo "$views%"; ?>"><?php echo $v['counts']; ?></div>
+							</div>
+
+							Users<span class="pull-right strong">
+								<?php
+								$fetch_users = mysqli_query($conn, "SELECT count(*) as uc from users");
+								$uc = $fetch_users->fetch_assoc();
+								$users = $uc['uc'];
+								echo $users;
+								?></span>
+							<div class="progress">
+								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo "$users%" ?>"><?php echo $users ?></div>
+							</div>
+
+							Downloads<span class="pull-right strong">
+								<?php
+								$fetch_downloads = mysqli_query($conn, "SELECT count(*) as uc from downloads");
+								$ud = $fetch_downloads->fetch_assoc();
+								$download = $ud['uc'];
+								echo $download;
+								?>
+							</span>
+							<div class="progress">
+								<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo ($download / $s) . "%"; ?>"><?php echo $download ?></div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="inner-block">
+
 				</div>
 			</div>
+			<!--inner block end here-->
+			<!--copy rights start here-->
+			<!-- <?php include('includes/footer.php'); ?> -->
 
 
+			<!--/sidebar-menu-->
+			<?php include('includes/sidebarmenu.php'); ?>
 			<div class="clearfix"></div>
-		</div>
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>DashBoard</li>
-		</ol>
-		<!--//four-grids here-->
-
-
-		<div class="inner-block">
-
-		</div>
-		<!--inner block end here-->
-		<!--copy rights start here-->
-		<!-- <?php include('includes/footer.php'); ?> -->
-
-
-		<!--/sidebar-menu-->
-		<?php include('includes/sidebarmenu.php'); ?>
-		<div class="clearfix"></div>
 		</div>
 		<script>
 			var toggle = true;

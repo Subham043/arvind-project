@@ -60,17 +60,22 @@ if (isset($_POST['song_name'])) {
 
 	$song_name = $_POST['song_name'];
 	$aritst_id = $_POST['aritst_id'];
+	$songtype_id = $_POST['type_id'];
+	if ($_POST['txt_type_id'] != "") {
+		$genreinsert = mysqli_query($conn, "Insert into genre (type) values('" . $_POST['txt_type_id'] . "')");
+	}
 	$verify = 0;
 	$SQL = "INSERT INTO songs(
-						song_mp3,song_photo,aritst_id,song_name,verify,user_id
+						song_mp3,song_photo,aritst_id,song_name,verify,user_id,`type_id`
 					)VALUES(
-						'{$song_mp3}','{$song_photo}','{$aritst_id}','{$song_name}',{$verify},{$user_id}
+						'{$song_mp3}','{$song_photo}','{$aritst_id}','{$song_name}',{$verify},{$user_id},{$songtype_id}
 					)
 				";
 
 	if ($conn->query($SQL)) {
 		message("New song was uploaded successfully.", "success");
 	} else {
+
 		message("Something went wrong while uploading New song.", "warning");
 	}
 
@@ -103,11 +108,34 @@ $artists = get_all_artists($conn);
 					<select name="aritst_id" required="" class="form-control">
 						<option value=""></option>
 						<?php foreach ($artists as $key => $a) : ?>
-							<option value="<?php echo ($a['artist_id']); ?>"><?php echo ($a['artist_name']); ?></option>
+							<option value="<?php echo $a['artist_id']; ?>"><?php echo $a['artist_name']; ?></option>
 						<?php endforeach ?>
 					</select>
 				</div>
+				<div class="form-group">
+					<label for="type_id">Genre</label>
+					<select class="form-control" required id="type_id" name="type_id">
+						<option value="" selected>SELECT District</option>
+						<?php
+						$gen = mysqli_query($conn, "SELECT * from genre");
+						if (mysqli_num_rows($gen) > 0) {
+							while ($row = $gen->fetch_assoc()) {
+						?><option value="<?php echo $row['id'] ?>"><?php echo $row['type'] ?></option>
 
+						<?php
+
+							}
+						}
+						?>
+						<option value="others">Others</option>
+					</select>
+
+				</div>
+				<div class="form-group">
+
+					<input type="text" name="txt_type_id" class="form-control" id="txt_type_id" hidden>
+
+				</div>
 
 				<div class="form-group">
 					<label for="song_photo">Song photo</label>
@@ -131,3 +159,12 @@ $artists = get_all_artists($conn);
 
 
 <?php require_once("files/footer.php"); ?>
+<script>
+	$('#type_id').change(function() {
+		var type = $(this).val();
+		if (type == 'others')
+			$('#txt_type_id').prop('hidden', false);
+		else
+			$('#txt_type_id').prop('hidden', true);
+	})
+</script>
