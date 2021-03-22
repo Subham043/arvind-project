@@ -57,11 +57,11 @@ $top_songs = get_top_songs($conn);
 									<?php echo $s['view_count']; ?> Views
 								</div>
 								<div class="col-12">
-								Uploaded by : <?php $sqll = mysqli_query($conn,"SELECT first_name,last_name from users");
-								$res = $sqll->fetch_assoc();
-								$name = $res['first_name']." ".$res['last_name'];
-								echo $name;
-								?>
+									Uploaded by : <?php $sqll = mysqli_query($conn, "SELECT first_name,last_name from users where user_id='" . $s['user_id'] . "'");
+													$res = $sqll->fetch_assoc();
+													$name = $res['first_name'] . " " . $res['last_name'];
+													echo $name;
+													?>
 								</div>
 								<div class="col-12">
 									<?php echo get_likes($conn, $s['song_id']); ?> <i href="#" id="liked" class="fa fa-thumbs-up"></i>

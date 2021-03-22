@@ -130,11 +130,11 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                 <?php
                                                 if ($result['verify'] == 0) {
                                                 ?>
-                                                    <td><a href="#" id="approved" class="btn btn-info">Approve</a></td>
+                                                    <td><a href="approve.php?song_id=<?php echo $result['song_id'] ?>&action=1" class="btn btn-info">Approve</a></td>
                                                 <?php
                                                 } else {
                                                     echo "<td>APPROVED</td>"; ?>
-                                                    <td><a href="#" id="reject" class="btn btn-danger">Reject</a></td>
+                                                    <td><a href="approve.php?song_id=<?php echo $result['song_id'] ?>&action=0" class="btn btn-danger">Reject</a></td>
                                                 <?php }
                                                 ?>
                                             </tr>

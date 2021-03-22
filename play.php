@@ -11,7 +11,8 @@ if (!isset($_SESSION['user'])) {
 
 
 $user_id = $_SESSION['user']['user_id'];
-$song_id = $_GET['song'];
+if (isset($_GET['song']))
+	$song_id = $_GET['song'];
 record_view($conn, $song_id, $user_id);
 
 

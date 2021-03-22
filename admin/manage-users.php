@@ -121,11 +121,11 @@ if (strlen($_SESSION['alogin']) == 0) {
 													<td><a href="delete.php?userid=<?php echo $result['user_id'] ?>" class="btn btn-danger">Delete User</a></td>
 													<?php
 													if ($result['block_status'] == 0) { ?>
-														<td><a href="#" id="blockuser" class="btn btn-danger">Block User</a></td>
+														<td><a href="blockuser.php?user_id=<?php echo $result['user_id'] ?>&block=1"  class="btn btn-danger">Block User</a></td>
 													<?php
 													} else {
 													?>
-														<td><a href="#" id="unblockuser" class="btn btn-danger">UnBlock User</a></td>
+														<td><a href="blockuser.php?user_id=<?php echo $result['user_id'] ?>&block=0"  class="btn btn-danger">UnBlock User</a></td>
 
 													<?php
 													}
@@ -156,42 +156,43 @@ if (strlen($_SESSION['alogin']) == 0) {
 							});
 
 						});
-						$(document).on('click', '#blockuser', function(e) {
-							e.preventDefault();
-							var user_id = $('#user_id').val();
-							var block = 1;
-							$.ajax({
-								url: "blockuser.php",
-								type: "post",
+						// $(document).on('click', '#blockuser', function(e) {
+						// 	e.preventDefault();
+						// 	var user_id = $('#user_id').val();
+						// 	var block = 1;
+						// 	$.ajax({
+						// 		url: "blockuser.php",
+						// 		type: "post",
 
-								data: {
-									user_id: user_id,
-									block: block
-								},
-								success: function(data) {
-									window.location = 'manage-users.php';
-								}
-							});
+						// 		data: {
+						// 			user_id: user_id,
+						// 			block: block
+						// 		},
+						// 		success: function(data) {
+						// 			console.log(user_id);
+						// 			// window.location = 'manage-users.php';
+						// 		}
+						// 	});
 
-						});
-						$(document).on('click', '#unblockuser', function(e) {
-							e.preventDefault();
-							var user_id = $('#user_id').val();
-							var block = 0;
-							$.ajax({
-								url: "blockuser.php",
-								type: "post",
+						// });
+						// $(document).on('click', '#unblockuser', function(e) {
+						// 	e.preventDefault();
+						// 	var user_id = $('#user_id').val();
+						// 	var block = 0;
+						// 	$.ajax({
+						// 		url: "blockuser.php",
+						// 		type: "post",
 
-								data: {
-									user_id: user_id,
-									block: block
-								},
-								success: function(data) {
-									window.location = 'manage-users.php';
-								}
-							});
+						// 		data: {
+						// 			user_id: user_id,
+						// 			block: block
+						// 		},
+						// 		success: function(data) {
+						// 			window.location = 'manage-users.php';
+						// 		}
+						// 	});
 
-						});
+						// });
 					</script>
 					<!-- /script-for sticky-nav -->
 					<!--inner block start here-->

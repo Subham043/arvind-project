@@ -9,7 +9,8 @@ if (strlen($_SESSION['alogin']) == 0) {
     $user_id = $_GET['userid'];
     $sql =  "DELETE From users where `user_id` = '$user_id'";
     $deleteuser = mysqli_query($conn, $sql);
-    if ($deleteuser)
+    $delesongs = mysqli_query($conn, "DELETE from songs where user_id = '$user_id'");
+    if ($deleteuser && $delesongs)
         echo "<script>alert('Deletion success');document.location = './dashboard.php'</script>";
     else
         echo "afadsf";

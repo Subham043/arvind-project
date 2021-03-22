@@ -98,7 +98,7 @@
                     <div class="row">
                         <div class="col">
                             <label for="Password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required="" placeholder="Password">
+                            <input type="password" minlength="8" maxlength="12" required title="8 to 12 characters" class="form-control" id="password" name="password" required="" placeholder="Password">
 
                         </div>
                         <div class="col">

@@ -3,14 +3,14 @@ session_start();
 include('includes/db.php');
 include '.././files/functions.php';
 
+if ($_GET['song_id']) {
+    $song_id = $_GET['song_id'];
+    $action = $_GET['action'];
+    $res = mysqli_query($conn, "UPDATE songs set verify = '$action' where song_id ='$song_id' ");
+    if ($res) {
+    } else {
 
-$song_id = $_POST['song_id'];
-$action = $_POST['action'];
-$res = mysqli_query($conn, "UPDATE songs set verify = '$action' where song_id ='$song_id' ");
-if ($res) {
-    $data = array('responce' => 'success', 'message' => 'approved');
-} else {
-
-    $data = array('responce' => 'error', 'message' => 'failed');
+        $data = array('responce' => 'error', 'message' => 'failed');
+    }
 }
-echo json_encode($data);
+header('location:manage_songs.php');

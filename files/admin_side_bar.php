@@ -12,5 +12,7 @@
 		</a>
 		<a href="admin_artists.php" class="list-group-item list-group-item-action rounded-0">
 			All Artists</a>
+		<a href="karoke_music.php?op=view" class="list-group-item list-group-item-action rounded-0">
+			Karoke Musics </a>
 	</div>
 </div>
