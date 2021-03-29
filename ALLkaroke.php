@@ -18,7 +18,7 @@ require_once("files/header.php");
 
 
         <?php $i = 0;
-        $fetch = mysqli_query($conn, "SELECT * from karoke");
+        $fetch = mysqli_query($conn, "SELECT * from karoke where verify=1");
         while ($s = $fetch->fetch_assoc()) {
 
             $i++;

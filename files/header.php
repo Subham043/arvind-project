@@ -15,7 +15,7 @@
 
 <body>
 	<nav style="border-radius:5px" class="navbar navbar-expand-lg navbar-light bg-info container">
-		<a class="navbar-brand text-light font-italic" href="index.php">onMelody</a>
+		<a class="navbar-brand text-light font-italic" href="index.php">online-Melody</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -24,6 +24,9 @@
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
 					<a class="nav-link text-light" href="ALLkaroke.php">Karoke Musics</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-light" href="#">Genre</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link text-light" href="latest_tracks.php">Latest Tracks</a>
@@ -45,13 +48,6 @@
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
-				<?php if (isset($_SESSION['user'])) { ?>
-					<a class="nav-link ml-3 btn btn-sm btn-danger btn-outline-light" style="border-radius:15px" href=" logount_process.php">Logout</a>
-				<?php } else {
-				?> <a class="nav-link ml-3 btn btn-sm btn-primary btn-outline-light" style="border-radius:15px" href="admin/">Admin</a>
-				<?php
-				}
-				?>
 			</form>
 		</div>
 	</nav>

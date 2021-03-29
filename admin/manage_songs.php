@@ -90,7 +90,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
                     <div class="agile-tables">
                         <div class="w3l-table-info">
-                            <h2>Manage Users</h2>
+                            <h2>Manage Songs</h2>
                             <table id="table">
                                 <thead>
                                     <tr>

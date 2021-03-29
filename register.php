@@ -8,11 +8,10 @@
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="css/password.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <style>
             #search {
-                margin-left: 370px;
+                margin-left: 200px;
             }
 
             #search_submit {
@@ -30,7 +29,7 @@
         </style>
     </head>
     <nav style="border-radius:5px" class="navbar navbar-expand-lg navbar-light bg-info container">
-        <a class="navbar-brand text-light font-italic" href="index.php">onMelody</a>
+        <a class="navbar-brand text-light font-italic" href="index.php">online-Melody</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -38,8 +37,15 @@
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Latest Tracks</a>
+                    <a class="nav-link text-light" href="ALLkaroke.php">Karoke Musics</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="genre.php">Genre</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="latest_tracks.php">Latest Tracks</a>
+                </li>
+
                 <li class="nav-item">
                     <?php if (isset($_SESSION['user'])) { ?>
                         <!-- <a class="nav-link text-danger" href="logount_process.php">Logout</a> -->
@@ -90,7 +96,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-xs-6">
                             <label for="username">Email</label>
                             <input type="email" class="form-control" id="username" name="username" required="" placeholder="Enter Email">
                         </div>
@@ -99,151 +105,66 @@
                         <div class="col">
                             <label for="Password">Password</label>
                             <input type="password" minlength="8" maxlength="12" required title="8 to 12 characters" class="form-control" id="password" name="password" required="" placeholder="Password">
-
+                            <p id="result" class="text-danger"></p>
                         </div>
                         <div class="col">
                             <label for="Password">Confirm Password</label>
                             <input type="password" class="form-control" id="cpassword" name="cpassword" required="" placeholder="Confirm Password">
-                            <p id="msg" class="text-danger"></p>
+                            <p id="msg"></p>
                         </div>
                     </div>
                     <button type="submit" id="submit" class="btn btn-primary float-right mt-2">Register</button>
                 </form>
             </div>
-            <div class="col-md-6 pt-5 mt-5">
-                <!-- <div class="" style="border:dotted"> -->
-                <div class="req-container">
-                    <p class="text-dark h4">Password:</p>
-                    <ul>
-                        <li id="req-length"><span class="glyphicon glyphicon-remove-circle"> </span>&nbsp6 characters</li>
-                        <li id="req-upper"><span class="glyphicon glyphicon-remove-circle"> </span>&nbspone uppercase</li>
-                        <li id="req-lower"><span class="glyphicon glyphicon-remove-circle"> </span>&nbspone lowercase</li>
-                        <li id="req-digit"><span class="glyphicon glyphicon-remove-circle"> </span>&nbspone digit</li>
-                        <li id="req-special"><span class="glyphicon glyphicon-remove-circle"> </span>&nbspone special character</li>
-                    </ul>
-                    <!-- </div> -->
-                </div>
-            </div>
+
         </div>
     </div>
     <?php include './files/footer.php' ?>
     <script>
-        $(function() {
-            "user strict";
-
-            /**
-             * start password checking logic
-             */
-            password.init();
-            $('#cpassword').keyup(function() {
-                var password = $('#password').val();
-                if (password != $(this).val()) {
-                    $('#msg').html("password does not match");
-                } else {
-                    $('#msg').html("");
-                }
+        $('#cpassword').keyup(function() {
+            var password = $('#password').val();
+            if (password != $(this).val()) {
+                $('#msg').html("password does not match");
+            } else {
+                $('#msg').html("");
+            }
+        })
+        $(document).ready(function() {
+            $('#password').keyup(function() {
+                $('#result').html(checkStrength($('#password').val()))
             })
-        });
 
-        /**
-         * Hold functions related to client side password validation
-         */
-        var password = (function() {
-            "use strict";
-
-            var minPasswordLength = 6;
-
-            var _hasLowerCase = /[a-z]/;
-            var _hasUpperCase = /[A-Z]/;
-            var _hasDigit = /\d/;
-            // match special characters except space
-            var _hasSpecial = /(_|[^\w\d ])/;
-
-            var password = [];
-            var password2 = [];
-
-            var hasEightCharsListItem,
-                hasUpperCaseListItem,
-                hasLowerCaseListItem,
-                hasSpecialListItem,
-                hasDigitListItem;
-
-            // Enforces that password2 = password, and display an error message if it does not
-            var mustMatch = function() {
-
-                if (password.val() !== password2.val()) {
-                    // show not matching error
-                    password2.addClass('invalid');
-                    return false;
+            function checkStrength(password) {
+                var strength = 0
+                if (password.length < 6) {
+                    $('#result').removeClass()
+                    $('#result').addClass('short text-danger')
+                    return 'Too short'
                 }
-
-                password2.removeClass('invalid');
-                return true;
-            };
-
-            // check validation and adjust classes
-            var checkAndSwitchClasses = function(has, $element) {
-                if (has) {
-                    $element.find(".glyphicon").removeClass("glyphicon-remove-circle").removeClass('invalid').addClass('valid').addClass("glyphicon-ok-circle");
-                    return true;
-                }
-
-                $element.find(".glyphicon").removeClass("glyphicon-ok-circle").removeClass('valid').addClass('invalid').addClass("glyphicon-remove-circle");
-                return false;
-
-            };
-
-            // Enforces server side password rules on the client for convenience
-            var enforceRules = function() {
-
-                $('.invalid').removeClass('invalid');
-
-                var pw = password.val().toLowerCase();
-
-                var hasEight = pw.length >= minPasswordLength;
-                var hasLower = _hasLowerCase.test(password.val());
-                var hasUpper = _hasUpperCase.test(password.val());
-                var hasDigit = _hasDigit.test(password.val());
-                var hasSpecial = _hasSpecial.test(password.val());
-
-                checkAndSwitchClasses(hasEight, hasEightCharsListItem);
-                checkAndSwitchClasses(hasLower, hasLowerCaseListItem);
-                checkAndSwitchClasses(hasUpper, hasUpperCaseListItem);
-                checkAndSwitchClasses(hasDigit, hasDigitListItem);
-                checkAndSwitchClasses(hasSpecial, hasSpecialListItem);
-
-                if (pw.length === 0) $('.invalid').removeClass('invalid');
-
-                // don't move forward until the password is actually *good*
-                /*        if (!(hasEight && hasLower && hasUpper && hasDigit && hasSpecial)) {
-                            return false;
-                        }*/
-
-                if (mustMatch() && (hasEight && hasLower && hasUpper && hasDigit && hasSpecial)) {
-                    $('#submit').addClass('valid');
+                if (password.length > 7) strength += 1
+                // If password contains both lower and uppercase characters, increase strength value.
+                if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength += 1
+                // If it has numbers and characters, increase strength value.
+                if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) strength += 1
+                // If it has one special character, increase strength value.
+                if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
+                // If it has two special characters, increase strength value.
+                if (password.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
+                // Calculated strength value, we can return messages
+                // If value is less than 2
+                if (strength < 2) {
+                    $('#result').removeClass()
+                    $('#result').addClass('weak text-danger')
+                    return 'Weak'
+                } else if (strength == 2) {
+                    $('#result').removeClass()
+                    $('#result').addClass('good text-primary')
+                    return 'Good'
                 } else {
-                    $('#submit').removeClass('valid');
+                    $('#result').removeClass()
+                    $('#result').addClass('strong text-success')
+                    return 'Strong'
                 }
-            };
-
-            return {
-
-                init: function() {
-                    // hook all password/password2 fields on a page
-                    password = $('#password');
-                    password2 = $('#cpassword');
-
-                    // hook all req list items
-                    hasEightCharsListItem = $('#req-length');
-                    hasUpperCaseListItem = $('#req-upper');
-                    hasLowerCaseListItem = $('#req-lower');
-                    hasSpecialListItem = $('#req-special');
-                    hasDigitListItem = $('#req-digit');
-
-                    password.keyup(enforceRules);
-                    password2.keyup(enforceRules);
-
-                }
-            };
-        }());
+            }
+        });
     </script>

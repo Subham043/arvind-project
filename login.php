@@ -18,11 +18,14 @@ require_once("files/header.php"); ?>
 				<div class="form-group">
 					<a href="forgetPassword.php" class="text-primary">Forget Password</a>
 				</div>
+
+
 				<button type="submit" class="btn btn-primary float-right mt-2">Login</button>
 				<div class="form-group">
-					<span class="text-primary">New User?</span><a href="register.php" >Click here to register</a>
+					<span class="text-primary">New User?</span><a href="register.php">Click here to register</a>
 				</div>
 			</form>
+			<a class="btn btn-sm btn-primary " href="admin/">Admin</a>
 		</div>
 
 	</div>

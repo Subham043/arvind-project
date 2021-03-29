@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 21, 2021 at 05:33 AM
+-- Generation Time: Mar 22, 2021 at 08:12 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -81,6 +81,20 @@ CREATE TABLE `genre` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `karoke`
+--
+
+CREATE TABLE `karoke` (
+  `id` int(11) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `photo` varchar(1000) NOT NULL,
+  `music` varchar(1000) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `likes`
 --
 
@@ -142,6 +156,14 @@ CREATE TABLE `views` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `views`
+--
+
+INSERT INTO `views` (`view_id`, `user_id`, `song_id`, `view_time`) VALUES
+(1, 1, 1, '1616303653'),
+(2, 2, 2, '1616393409');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -167,6 +189,12 @@ ALTER TABLE `downloads`
 -- Indexes for table `genre`
 --
 ALTER TABLE `genre`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `karoke`
+--
+ALTER TABLE `karoke`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -222,6 +250,12 @@ ALTER TABLE `genre`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `karoke`
+--
+ALTER TABLE `karoke`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `likes`
 --
 ALTER TABLE `likes`
@@ -243,7 +277,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `views`
 --
 ALTER TABLE `views`
-  MODIFY `view_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `view_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

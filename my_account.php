@@ -33,6 +33,14 @@ if (isset($_SESSION['user'])) {
 					</li>
 					<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile">Profile</a>
 					</li>
+					<li class="nav-item offset-4"><?php if (isset($_SESSION['user'])) { ?>
+							<a class="nav-link btn-outline-danger"style="border-radius:15px" href=" logount_process.php">Logout</a>
+						<?php } else {
+						?>
+						<?php
+											}
+						?>
+					</li>
 				</ul>
 
 				<div class="tab-content">

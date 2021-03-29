@@ -64,7 +64,7 @@ if (isset($_POST['song_name'])) {
     //     $genreinsert = mysqli_query($conn, "Insert into genre (type) values('" . $_POST['txt_type_id'] . "')");
     // }
     $verify = 0;
-    $SQL = "INSERT INTO `karoke`(`name`, `photo`, `music`,`user_id`) VALUES('$song_name','$song_photo','$song_mp3','$user_id')
+    $SQL = "INSERT INTO `karoke`(`name`, `photo`, `music`,`user_id`,`verify`) VALUES('$song_name','$song_photo','$song_mp3','$user_id','0')
 				";
 
     if ($conn->query($SQL)) {
