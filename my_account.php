@@ -18,9 +18,9 @@ if (isset($_SESSION['user'])) {
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <div class="container">
 
-	<p class="h5 text-primary font-weight-bold" style="float:right;font-family: 'Times New Roman', Times, serif;"> <?php $name = $_SESSION['user']['first_name'] . " " . $_SESSION['user']['last_name'];
+	<!-- <p class="h5 text-primary font-weight-bold" style="float:right;font-family: 'Times New Roman', Times, serif;"> <?php $name = $_SESSION['user']['first_name'] . " " . $_SESSION['user']['last_name'];
 																													echo $name
-																													?></p>
+																													?></p> -->
 
 	<div class="row">
 		<div class="col-md-8">

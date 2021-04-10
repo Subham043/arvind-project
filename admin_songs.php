@@ -1,19 +1,23 @@
-<?php 
-	session_start(); 
-	if(isset($_SESSION['user'])){
-		//echo("<pre>Logged in");
-		//print_r($_SESSION['user']); 
-	}else{
-		header("Location: login.php");
-		die();
-	}
-	include 'files/functions.php';
-	$songs = get_all_songs($conn);
+<?php
+session_start();
+if (isset($_SESSION['user'])) {
+	//echo("<pre>Logged in");
+	//print_r($_SESSION['user']); 
+} else {
+	header("Location: login.php");
+	die();
+}
+$user_id = $_SESSION['user']['user_id'];
+include 'files/functions.php';
+$songs = mysqli_query($conn, "SELECT * FROM artist,songs
+			WHERE
+				songs.aritst_id = artist.artist_id and user_id = '$user_id'
+			ORDER BY artist_name ASC");
 ?>
-<?php require_once("files/header.php"); ?> 
+<?php require_once("files/header.php"); ?>
 
 <div class="container">
- 
+
 	<div class="row">
 		<?php include 'files/admin_side_bar.php'; ?>
 		<div class="col-md-8">
@@ -22,37 +26,39 @@
 			<a href="admin_song_upload.php" class="btn btn-dark float-right mt-md-3 mb-md-3">
 				Add new song
 			</a>
- 
+
 			<table class="table table-bordered">
-			  <thead class="thead-dark">
-			    <tr>
-			      <th scope="col" style="width: 30%;">#</th>
-			      <th scope="col">Song Title</th>
-			      <th scope="col" style="width: 20%;">Artist</th>
-			      <th scope="col" style="width: 20%;">Action</th>
-			    </tr>
-			  </thead>
-			  <tbody>
-			  	<?php foreach ($songs as $key => $a): ?>
-				    <tr>
-				      <th scope="row"><img class="img-fluid rounded" width="100%" src="uploads/<?php echo $a['song_photo']; ?>" alt=""></th>
-				      <td><?php 
-				      	echo $a['song_name']; 
-				      ?></td>
-				      <td><?php 
-				      	echo $a['artist_name']; 
-				      ?></td>
-				      <td><div class="btn-group btn-group-sm">
-				      	<a target="_blank" href="play.php?song=<?php echo($a['song_id']); ?>" title="<?php echo $a['song_name']; ?> By <?php echo $a['artist_name']; ?>" class="btn btn-primary"  >View</a>
-				      	<a href="admin_edit_song.php?song_id=<?php echo($a['song_id']); ?>" class="btn btn-dark" title="">Edit</a>
-				      	<a href="admin_delete_process.php?song_id=<?php echo($a['song_id']); ?>" class="btn btn-danger" title="">Delete</a>
-				      </div></td>
-				    </tr> 
-			  	<?php endforeach ?>
-			  </tbody>
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col" style="width: 30%;">#</th>
+						<th scope="col">Song Title</th>
+						<th scope="col" style="width: 20%;">Artist</th>
+						<th scope="col" style="width: 20%;">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($songs as $key => $a) : ?>
+						<tr>
+							<th scope="row"><img class="img-fluid rounded" width="100%" src="uploads/<?php echo $a['song_photo']; ?>" alt=""></th>
+							<td><?php
+								echo $a['song_name'];
+								?></td>
+							<td><?php
+								echo $a['artist_name'];
+								?></td>
+							<td>
+								<div class="btn-group btn-group-sm">
+									<a target="_blank" href="play.php?song=<?php echo ($a['song_id']); ?>" title="<?php echo $a['song_name']; ?> By <?php echo $a['artist_name']; ?>" class="btn btn-primary">View</a>
+									<a href="admin_edit_song.php?song_id=<?php echo ($a['song_id']); ?>" class="btn btn-dark" title="">Edit</a>
+									<a href="admin_delete_process.php?song_id=<?php echo ($a['song_id']); ?>" class="btn btn-danger" title="">Delete</a>
+								</div>
+							</td>
+						</tr>
+					<?php endforeach ?>
+				</tbody>
 			</table>
 
-	 
+
 
 		</div>
 	</div>
@@ -60,6 +66,4 @@
 </div>
 
 
-<?php require_once("files/footer.php"); ?> 
-
-  
+<?php require_once("files/footer.php"); ?>

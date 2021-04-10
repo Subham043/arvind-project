@@ -42,7 +42,7 @@
 
 				</li>
 				<li class="nav-item">
-					<a class="btn btn-primary btn-sm mt-1" href="admin_song_upload.php">UPLOAD NEW MUSIC</a>
+					<a class="nav-link text-light" href="admin_song_upload.php">UPLOAD NEW MUSIC</a>
 				</li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
@@ -51,7 +51,9 @@
 			</form>
 		</div>
 	</nav>
-
+	<div class="container">
+		<p class="float-right m-3 font-weight-bold text-secondary"> <?php if (isset($_SESSION['user'])) echo $_SESSION['user']['username']; ?></p>
+	</div>
 	<?php if (isset($_SESSION['message'])) { ?>
 		<div class="alert alert-<?= $_SESSION['message']['type'] ?>  m-3">
 			<?php

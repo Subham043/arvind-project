@@ -42,7 +42,7 @@ $artists = get_all_artists($conn);
 							<td>
 								<div class="btn-group btn-group-sm">
 									<a href="artist.php?artist_id=<?php echo $a['artist_id'] ?>" class="btn btn-primary" title="">View</a>
-									<a href="#" class="btn btn-dark" title="">Edit</a>
+									
 									<a href="admin_artist_delete.php?artist_id=<?php echo $a['artist_id'] ?>" class="btn btn-danger" title="">Delete</a>
 								</div>
 							</td>

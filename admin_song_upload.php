@@ -115,19 +115,18 @@ $artists = get_all_artists($conn);
 				<div class="form-group">
 					<label for="type_id">Genre</label>
 					<select class="form-control" required id="type_id" name="type_id">
-						<option value="" selected>SELECT District</option>
+						<option value="" selected>SELECT </option>
 						<?php
-						$gen = mysqli_query($conn, "SELECT * from genre");
-						if (mysqli_num_rows($gen) > 0) {
-							while ($row = $gen->fetch_assoc()) {
-						?><option value="<?php echo $row['id'] ?>"><?php echo $row['type'] ?></option>
-
-						<?php
-
-							}
-						}
+						// $gen = mysqli_query($conn, "SELECT * from genre");
+						// if (mysqli_num_rows($gen) > 0) {
+						// 	while ($row = $gen->fetch_assoc()) {
 						?>
-						<option value="others">Others</option>
+						<option value="movies">Movies</option>
+						<option value="pop">Pop</option>
+						<option value="rock">rock</option>
+						<option value="Melody">Melody</option>
+
+						<!-- <option value="others">Others</option> -->
 					</select>
 
 				</div>
