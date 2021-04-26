@@ -8,7 +8,8 @@ if (isset($_SESSION['user'])) {
 	die();
 }
 include 'files/functions.php';
-$artists = get_all_artists($conn);
+$user_id = $_SESSION['user']['user_id'];
+$artists = get_all_artists($conn, $user_id);
 ?>
 <?php require_once("files/header.php"); ?>
 
@@ -42,7 +43,7 @@ $artists = get_all_artists($conn);
 							<td>
 								<div class="btn-group btn-group-sm">
 									<a href="artist.php?artist_id=<?php echo $a['artist_id'] ?>" class="btn btn-primary" title="">View</a>
-									
+
 									<a href="admin_artist_delete.php?artist_id=<?php echo $a['artist_id'] ?>" class="btn btn-danger" title="">Delete</a>
 								</div>
 							</td>

@@ -2,6 +2,8 @@
 session_start();
 include 'files/functions.php';
 if (isset($_SESSION['user'])) {
+
+	$user_id = $_SESSION['user']['user_id'];
 } else {
 	header("Location: login.php");
 	die();
@@ -34,8 +36,8 @@ if (isset($_POST['artist_name'])) {
 	$artist_biography = $_POST['artist_biography'];
 	$test = mysqli_query($conn, "SELECT * from artist where artist_name ='$artist_name'");
 	if (mysqli_num_rows($test) == 0)
-		$SQL = "INSERT INTO artist(artist_name,artist_biography,artist_photo)
-			VALUES('{$artist_name}','{$artist_biography}','{$file_name}')";
+		$SQL = "INSERT INTO artist(artist_name,artist_biography,artist_photo,user_id)
+			VALUES('{$artist_name}','{$artist_biography}','{$file_name}',{$user_id})";
 
 	if ($conn->query($SQL)) {
 		message("New artist was created successfully.", "success");

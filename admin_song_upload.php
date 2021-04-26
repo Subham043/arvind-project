@@ -61,7 +61,7 @@ if (isset($_POST['song_name'])) {
 	$song_name = $_POST['song_name'];
 	$aritst_id = $_POST['aritst_id'];
 	$songtype_id = $_POST['type_id'];
-	
+
 	$verify = 0;
 	$SQL = "INSERT INTO songs(
 						song_mp3,song_photo,aritst_id,song_name,verify,user_id,`type_id`
@@ -73,15 +73,15 @@ if (isset($_POST['song_name'])) {
 	if ($conn->query($SQL)) {
 		message("New song was uploaded successfully.", "success");
 	} else {
-$er = mysqli_error($conn);
-		message($er."Something went wrong while uploading New song.", "warning");
+		$er = mysqli_error($conn);
+		message($er . "Something went wrong while uploading New song.", "warning");
 	}
 
 	header("Location: admin_songs.php");
 	die();
 }
 
-$artists = get_all_artists($conn);
+$artists = get_all_artists($conn, $user_id);
 ?>
 <?php require_once("files/header.php"); ?>
 <div class="container">

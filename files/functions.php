@@ -140,40 +140,36 @@ function get_top_songs($conn)
 }
 function get_searched_songs($conn, $searched_text)
 {
-$searched_text =strtolower($searched_text);
-	$ress =1;
+	$searched_text = strtolower($searched_text);
+	$ress = 1;
 	if ($ress > 0) {
-		$songs = mysqli_query($conn, "SELECT * FROM artist,songs
-			WHERE
-				songs.aritst_id = artist.artist_id and songs.verify=1 and type_id = '$searched_text' ORDER BY artist_name ASC");
-	$_songs = array();
-	
-if(mysqli_num_rows($songs)>0){
-	foreach ($songs as $key => $song) {
-		$song['view_count'] = get_song_views($conn, $song['song_id']);
-		$song['download_count'] = get_song_downloads($conn, $song['song_id']);
-		array_push($_songs, $song);
-	}
+		$songs = mysqli_query($conn, "SELECT * FROM artist,songs WHERE songs.aritst_id = artist.artist_id and songs.verify=1 and (type_id like '$searched_text%' or artist.artist_name like '$searched_text%' or songs.song_name like '$searched_text%') ORDER BY artist_name ASC ");
+		$_songs = array();
 
-	$i  = 0;
-	$j  = 0;
+		if (mysqli_num_rows($songs) > 0) {
+			foreach ($songs as $key => $song) {
+				$song['view_count'] = get_song_views($conn, $song['song_id']);
+				$song['download_count'] = get_song_downloads($conn, $song['song_id']);
+				array_push($_songs, $song);
+			}
 
-	for ($j = 0; $j < (count($_songs) - 1); $j++) {
-		for ($i = 0; $i < (count($_songs) - 1); $i++) {
-			if ($_songs[$i]['view_count'] < $_songs[$i + 1]['view_count']) {
-				$temp = $_songs[$i];
-				$_songs[$i] = $_songs[$i + 1];
-				$_songs[$i + 1] = $temp;
+			$i  = 0;
+			$j  = 0;
+
+			for ($j = 0; $j < (count($_songs) - 1); $j++) {
+				for ($i = 0; $i < (count($_songs) - 1); $i++) {
+					if ($_songs[$i]['view_count'] < $_songs[$i + 1]['view_count']) {
+						$temp = $_songs[$i];
+						$_songs[$i] = $_songs[$i + 1];
+						$_songs[$i + 1] = $temp;
+					}
+				}
 			}
 		}
+		return $_songs;
+	} else {
+		return false;
 	}
-}
-	return $_songs;
-}
-else
-{
-	return false;
-}
 }
 
 //song view count
@@ -282,9 +278,9 @@ function get_artist_by_artist_id($conn, $artist_id)
 
 
 
-function get_all_artists($conn)
+function get_all_artists($conn, $user_id)
 {
-	$sql = "SELECT * FROM artist ORDER BY artist_name ASC";
+	$sql = "SELECT * FROM artist where user_id = '$user_id' ORDER BY artist_name ASC";
 	$res = $conn->query($sql);
 	$artists = array();
 	while ($data = $res->fetch_assoc()) {

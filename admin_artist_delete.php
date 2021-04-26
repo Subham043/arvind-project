@@ -32,7 +32,7 @@ if ($song_id != "") {
     if (file_exists($song_mp3_location)) { // checking if a file exists before I delete
         unlink($song_mp3_location); //Delete a file 
     }
-
+    $song_id  = $song_id['song_id'];
     $sql = "DELETE FROM downloads WHERE song_id  = {$song_id}";
     $conn->query($sql);
     $sql = "DELETE FROM views WHERE song_id  = {$song_id}";
@@ -42,9 +42,10 @@ if ($song_id != "") {
 }
 $sql = "DELETE FROM artist WHERE artist_id  = {$artist_id}";
 if ($conn->query($sql)) {
-    message("The Artist and their songs was deleted successfully.", "success");
+    message("The Artist was deleted successfully.", "success");
 } else {
-    message("Something went wrong while deleting the song.", "danger");
+    $er = mysqli_error($conn);
+    message("$er Something went wrong while deleting the song.", "danger");
 }
 
 header("Location: admin_artists.php");

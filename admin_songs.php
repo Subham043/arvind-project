@@ -11,7 +11,7 @@ $user_id = $_SESSION['user']['user_id'];
 include 'files/functions.php';
 $songs = mysqli_query($conn, "SELECT * FROM artist,songs
 			WHERE
-				songs.aritst_id = artist.artist_id and user_id = '$user_id'
+				songs.aritst_id = artist.artist_id and songs.user_id = '$user_id'
 			ORDER BY artist_name ASC");
 ?>
 <?php require_once("files/header.php"); ?>

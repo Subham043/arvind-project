@@ -25,12 +25,12 @@
 				<li class="nav-item">
 					<a class="nav-link text-light" href="ALLkaroke.php">BGM</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link text-light" href="#">Genre</a>
-				</li>
 				<!-- <li class="nav-item">
-					<a class="nav-link text-light" href="latest_tracks.php">Latest Tracks</a>
+					<a class="nav-link text-light" href="#">Genre</a>
 				</li> -->
+				<li class="nav-item">
+					<a class="nav-link text-light" href="latest_tracks.php">Latest Tracks</a>
+				</li>
 
 				<li class="nav-item">
 					<?php if (isset($_SESSION['user'])) { ?>

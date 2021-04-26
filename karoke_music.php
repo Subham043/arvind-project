@@ -88,7 +88,7 @@ if (isset($_POST['song_name'])) {
     <div class="row pl-0">
         <?php include 'files/admin_side_bar.php'; ?>
         <div class="col-md-8">
-            <h2>Karoke Music</h2>
+            <h2>BGM</h2>
 
             <?php
             if ($_GET['op'] == 'view') {

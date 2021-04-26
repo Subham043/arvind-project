@@ -13,7 +13,7 @@ require_once("files/header.php");
 ?><div class="container">
     <ul class="list-group mt-md-3">
         <li class="list-group-item">
-            <h2 class="display-4">Karoke Musics</h2>
+            <h2 class="display-4">BGM</h2>
         </li>
 
 
