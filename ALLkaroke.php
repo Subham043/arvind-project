@@ -26,7 +26,7 @@ require_once("files/header.php");
             <li class="list-group-item">
                 <div class="row">
                     <div class="col">
-                        <img class="img-fluid rounded" width="100" src="uploads/karoke<?php echo $s['photo']; ?>" alt="">
+                        <img class="img-fluid rounded" width="100" src="uploads/karoke/<?php echo $s['photo']; ?>" alt="">
                     </div>
                     <div class="col">
                         <div class="row">
@@ -53,7 +53,7 @@ require_once("files/header.php");
                     <div class="col">
                         <audio controls>
                             <source src="horse.ogg" type="audio/ogg">
-                            <source src="uploads/karoke<?php echo $s['music']; ?>" type="audio/mpeg">
+                            <source src="uploads/karoke/<?php echo $s['music']; ?>" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
                     </div>

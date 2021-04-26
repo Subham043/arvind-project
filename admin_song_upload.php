@@ -61,22 +61,20 @@ if (isset($_POST['song_name'])) {
 	$song_name = $_POST['song_name'];
 	$aritst_id = $_POST['aritst_id'];
 	$songtype_id = $_POST['type_id'];
-	if ($_POST['txt_type_id'] != "") {
-		$genreinsert = mysqli_query($conn, "Insert into genre (type) values('" . $_POST['txt_type_id'] . "')");
-	}
+	
 	$verify = 0;
 	$SQL = "INSERT INTO songs(
 						song_mp3,song_photo,aritst_id,song_name,verify,user_id,`type_id`
 					)VALUES(
-						'{$song_mp3}','{$song_photo}','{$aritst_id}','{$song_name}',{$verify},{$user_id},{$songtype_id}
+						'$song_mp3','$song_photo','$aritst_id','$song_name','$verify','$user_id','$songtype_id'
 					)
 				";
 
 	if ($conn->query($SQL)) {
 		message("New song was uploaded successfully.", "success");
 	} else {
-
-		message("Something went wrong while uploading New song.", "warning");
+$er = mysqli_error($conn);
+		message($er."Something went wrong while uploading New song.", "warning");
 	}
 
 	header("Location: admin_songs.php");
@@ -130,12 +128,6 @@ $artists = get_all_artists($conn);
 					</select>
 
 				</div>
-				<div class="form-group">
-
-					<input type="text" name="txt_type_id" class="form-control" id="txt_type_id" hidden>
-
-				</div>
-
 				<div class="form-group">
 					<label for="song_photo">Song photo</label>
 					<input type="file" name="song_photo" class="form-control" id="song_photo">

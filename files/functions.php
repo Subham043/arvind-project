@@ -140,17 +140,15 @@ function get_top_songs($conn)
 }
 function get_searched_songs($conn, $searched_text)
 {
-	$ress = mysqli_query($conn, "SELECT id from genre where lower(type) = '$searched_text'");
-	$type_id = $ress->fetch_assoc();
-	
-	if (mysqli_num_rows($ress) > 0) {
+$searched_text =strtolower($searched_text);
+	$ress =1;
+	if ($ress > 0) {
 		$songs = mysqli_query($conn, "SELECT * FROM artist,songs
 			WHERE
-				songs.aritst_id = artist.artist_id and verify=1 and type_id = '" . $type_id['id'] . "'
-			ORDER BY artist_name ASC");
-	
+				songs.aritst_id = artist.artist_id and songs.verify=1 and type_id = '$searched_text' ORDER BY artist_name ASC");
 	$_songs = array();
-
+	
+if(mysqli_num_rows($songs)>0){
 	foreach ($songs as $key => $song) {
 		$song['view_count'] = get_song_views($conn, $song['song_id']);
 		$song['download_count'] = get_song_downloads($conn, $song['song_id']);
@@ -169,6 +167,7 @@ function get_searched_songs($conn, $searched_text)
 			}
 		}
 	}
+}
 	return $_songs;
 }
 else

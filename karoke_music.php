@@ -16,7 +16,7 @@ if (isset($_POST['song_name'])) {
     if (isset($_FILES['song_photo']['error'])) {
         if ($_FILES['song_photo']['error'] == 0) {
 
-            $target_dir = "uploads/karoke";
+            $target_dir = "uploads/karoke/";
 
             $song_photo = time() . "_" . rand(100000, 10000000) . rand(100000, 10000000) . "_" . $_FILES["song_photo"]["name"];
 
@@ -38,7 +38,7 @@ if (isset($_POST['song_name'])) {
     if (isset($_FILES['song_mp3']['error'])) {
         if ($_FILES['song_mp3']['error'] == 0) {
 
-            $target_dir = "uploads/karoke";
+            $target_dir = "uploads/karoke/";
 
             $song_mp3 = time() . "_" . rand(100000, 10000000) . rand(100000, 10000000) . "_" . $_FILES["song_mp3"]["name"];
 
@@ -110,13 +110,13 @@ if (isset($_POST['song_name'])) {
                     <tbody>
                         <?php while ($a = $getkaroke->fetch_assoc()) { ?>
                             <tr>
-                                <th scope="row"><img class="img-fluid rounded" width="100%" src="uploads/karoke<?php echo $a['photo']; ?>" alt=""></th>
+                                <th scope="row"><img class="img-fluid rounded" width="100%" src="uploads/karoke/<?php echo $a['photo']; ?>" alt=""></th>
                                 <td><?php
                                     echo $a['name'];
                                     ?></td>
                                 <td><audio controls>
                                         <source src="horse.ogg" type="audio/ogg">
-                                        <source src="uploads/karoke<?php echo $a['music']; ?>" type="audio/mpeg">
+                                        <source src="uploads/karoke/<?php echo $a['music']; ?>" type="audio/mpeg">
                                         Your browser does not support the audio element.
                                     </audio></td>
                                 <td>

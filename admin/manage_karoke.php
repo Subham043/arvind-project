@@ -112,7 +112,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                 <td><?php echo htmlentities($cnt); ?></td>
                                                 <td><audio controls>
                                                         <source src="horse.ogg" type="audio/ogg">
-                                                        <source src=".././uploads/karoke<?php echo $result['music']; ?>" type="audio/mpeg">
+                                                        <source src=".././uploads/karoke/<?php echo $result['music']; ?>" type="audio/mpeg">
                                                         Your browser does not support the audio element.
                                                     </audio></td>
                                                 <?php
