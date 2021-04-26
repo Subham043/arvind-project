@@ -34,13 +34,15 @@ if (isset($_POST['artist_name'])) {
 
 	$artist_name = strtolower($_POST['artist_name']);
 	$artist_biography = $_POST['artist_biography'];
-	$test = mysqli_query($conn, "SELECT * from artist where artist_name ='$artist_name'");
-	if (mysqli_num_rows($test) == 0)
+	$test = mysqli_query($conn, "SELECT * from artist where lower(artist_name) ='$artist_name' and user_id = '$user_id'");
+	if (mysqli_num_rows($test) > 0) {
+	} else {
 		$SQL = "INSERT INTO artist(artist_name,artist_biography,artist_photo,user_id)
 			VALUES('{$artist_name}','{$artist_biography}','{$file_name}',{$user_id})";
-
+	}
+	$m = mysqli_num_rows($test);
 	if ($conn->query($SQL)) {
-		message("New artist was created successfully.", "success");
+		message("$m New artist was created successfully.", "success");
 	} else {
 		message(" Artist Already Added.", "warning");
 	}
