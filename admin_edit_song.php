@@ -7,7 +7,7 @@
 		header("Location: login.php");
 		die();
 	}
-
+	$user_id = $_SESSION['user']['user_id'];
 	if(isset($_POST["song_name"])){ 
 		$song_id = $_POST['song_id'];
 		$song =  get_top_song_by_song_id($conn,$song_id);
@@ -86,7 +86,7 @@
 	}
 
 	
-	$artists = get_all_artists($conn);
+	$artists = get_all_artists($conn,$user_id);
 	$song_id = $_GET['song_id'];
 
 	$song =  get_top_song_by_song_id($conn,$song_id);

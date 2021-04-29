@@ -5,7 +5,16 @@ include('includes/db.php');
 if (strlen($_SESSION['alogin']) == 0) {
     header('location:index.php');
 } else {
+    if ($_SESSION['message'] != "") {
 ?>
+        <script>
+            alert($_SESSION['message']);
+        </script>
+    <?php
+    }
+    $_SESSION['message'] = "";
+
+    ?>
     <!DOCTYPE HTML>
     <html>
 
@@ -38,32 +47,13 @@ if (strlen($_SESSION['alogin']) == 0) {
         <script type="text/javascript" src="js/jquery.basictable.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $('#table').basictable();
+                $('#table').DataTable({});
 
-                $('#table-breakpoint').basictable({
-                    breakpoint: 768
-                });
-
-                $('#table-swap-axis').basictable({
-                    swapAxis: true
-                });
-
-                $('#table-force-off').basictable({
-                    forceResponsive: false
-                });
-
-                $('#table-no-resize').basictable({
-                    noResize: true
-                });
-
-                $('#table-two-axis').basictable();
-
-                $('#table-max-height').basictable({
-                    tableWrapper: true
-                });
             });
         </script>
         <!-- //tables -->
+        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
         <link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css' />
         <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -90,59 +80,71 @@ if (strlen($_SESSION['alogin']) == 0) {
 
                     <div class="agile-tables">
                         <div class="w3l-table-info">
-                            <h2>Manage Songs</h2>
-                            <table id="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Song</th>
-                                        <th>Uploaded By</th>
-                                        <th>User ID </th>
-                                        <th class="text-center" colspan="2">Action</th>
+                            <div class="container">
+                                <h2>Manage Songs</h2>
+                                <table id="table" class="table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Song Name</th>
+                                            <th>Song</th>
+                                            <th>Uploaded By</th>
+                                            <th>User ID </th>
+                                            <th>Action</th>
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $sql = "SELECT * from songs";
-                                    $query = mysqli_query($conn, $sql);
-                                    $cnt = 1;
-                                    if (mysqli_num_rows($query) > 0) {
-                                        while ($result = $query->fetch_assoc()) {                ?>
-                                            <tr>
-                                                <td><?php echo htmlentities($cnt); ?></td>
-                                                <td><audio controls>
-                                                        <source src="horse.ogg" type="audio/ogg">
-                                                        <source src="./../uploads/<?php echo $result['song_mp3']; ?>" type="audio/mpeg">
-                                                        Your browser does not support the audio element.
-                                                    </audio></td>
-                                                <?php
-                                                $id = $result['user_id'];
-                                                $sql2 = "SELECT first_name,last_name from users where `user_id` ='$id'";
-                                                $query2 = mysqli_query($conn, $sql2);
-                                                $arr = $query2->fetch_assoc();
-                                                // $name = $arr['first_name'] . " " . $arr['last_name'];
 
-                                                ?>
-                                                <td><?php echo htmlentities($arr['first_name']) . " " . htmlentities($arr['last_name']); ?></td>
-                                                <td><?php echo htmlentities($result['user_id']); ?></td>
-                                                <!-- <td><?php echo htmlentities($result['last_seen']); ?></td> -->
-                                                <input type="hidden" id="song_id" value="<?php echo $result['song_id'] ?>">
-                                                <?php
-                                                if ($result['verify'] == 0) {
-                                                ?>
-                                                    <td><a href="approve.php?song_id=<?php echo $result['song_id'] ?>&action=1" class="btn btn-info">Approve</a></td>
-                                                <?php
-                                                } else {
-                                                    echo "<td>APPROVED</td>"; ?>
-                                                    <td><a href="approve.php?song_id=<?php echo $result['song_id'] ?>&action=0" class="btn btn-danger">Reject</a></td>
-                                                <?php }
-                                                ?>
-                                            </tr>
-                                    <?php $cnt = $cnt + 1;
-                                        }
-                                    } ?>
-                                </tbody>
-                            </table>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $sql = "SELECT * from songs";
+                                        $query = mysqli_query($conn, $sql);
+                                        $cnt = 1;
+                                        if (mysqli_num_rows($query) > 0) {
+                                            while ($result = $query->fetch_assoc()) {                ?>
+                                                <tr>
+                                                    <td><?php echo htmlentities($cnt); ?></td>
+                                                    <td><?php echo $result['song_name']?></td>
+                                                    <td>
+                                                        <audio controls>
+                                                            <source src="horse.ogg" type="audio/ogg">
+                                                            <source src="./../uploads/<?php echo $result['song_mp3']; ?>" type="audio/mpeg">
+                                                            Your browser does not support the audio element.
+                                                        </audio>
+
+                                                    </td>
+                                                    <?php
+                                                    $id = $result['user_id'];
+                                                    $sql2 = "SELECT first_name,last_name from users where `user_id` ='$id'";
+                                                    $query2 = mysqli_query($conn, $sql2);
+                                                    $arr = $query2->fetch_assoc();
+                                                    // $name = $arr['first_name'] . " " . $arr['last_name'];
+
+                                                    ?>
+                                                    <td><?php echo htmlentities($arr['first_name']) . " " . htmlentities($arr['last_name']); ?></td>
+                                                    <td><?php echo htmlentities($result['user_id']); ?><input type="hidden" id="song_id" value="<?php echo $result['song_id'] ?>"></td>
+
+
+                                                    <?php
+                                                    if ($result['verify'] == 0) {
+                                                    ?>
+                                                        <td colspan="3"><a href="approve.php?song_id=<?php echo $result['song_id'] ?>&action=1" class="btn btn-info">Approve</a></td>
+
+                                                    <?php
+                                                    } else {
+                                                        echo "<td>APPROVED"; ?>
+                                                        <a href="approve.php?song_id=<?php echo $result['song_id'] ?>&action=0" class="btn btn-danger">Reject</a>
+                                                        <a href="delete_songs.php?song_id=<?php echo ($result['song_id']); ?>" class="btn btn-danger" title="">Delete</a></td>
+
+                                                    <?php }
+                                                    ?>
+
+                                                </tr>
+                                        <?php $cnt = $cnt + 1;
+                                            }
+                                        } ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         </table>
 

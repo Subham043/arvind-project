@@ -66,18 +66,20 @@ if (isset($_POST['artist_name'])) {
 			<h2>Adding new artist</h2>
 
 			<form method="post" action="artist_add_new.php" enctype="multipart/form-data">
-				<div class="form-group">
-					<label for="artist_name">Artist name</label>
-					<input type="text" name="artist_name" class="form-control" id="artist_name" aria-describedby="emailHelp" placeholder="Enter artist name">
+				<div class="row">
+					<div class="col">
+						<label for="artist_name">Artist name</label>
+						<input type="text" name="artist_name" class="form-control" id="artist_name" aria-describedby="emailHelp" placeholder="Enter artist name">
+					</div>
+					<div class="col">
+						<label for="artist_photo">Artist photo</label>
+						<input type="file" accept=".png,.jpg,.jpeg,.gif" name="artist_photo" class="form-control" id="artist_photo" placeholder="Enter email">
+					</div>
+
 				</div>
 				<div class="form-group">
 					<label for="artist_biography">Artist biography</label>
 					<textarea name="artist_biography" class="form-control" id="artist_biography"></textarea>
-				</div>
-
-				<div class="form-group">
-					<label for="artist_photo">Artist photo</label>
-					<input type="file" accept=".png,.jpg,.jpeg,.gif" name="artist_photo" class="form-control" id="artist_photo" placeholder="Enter email">
 				</div>
 
 				<button type="submit" class="float-right mt-md-3 btn btn-lg btn-dark">Add new artist</button>

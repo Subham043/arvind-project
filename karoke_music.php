@@ -139,13 +139,6 @@ if (isset($_POST['song_name'])) {
                 <a style="float:right" href="karoke_music.php?op=view" class="btn btn-primary btn-sm">View Karoke</a>
 
                 <form method="post" action="" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="song_name">Name</label>
-                        <input type="text" name="song_name" class="form-control" id="song_name" placeholder="Enter song name">
-                    </div>
-
-
-
                     <!-- <div class="form-group">
                     <label for="type_id">Genre</label>
                     <select class="form-control" required id="type_id" name="type_id">
@@ -165,17 +158,22 @@ if (isset($_POST['song_name'])) {
                     </select>
 
                 </div> -->
-                    <div class="form-group">
-
+                    <div class="col">
                         <input type="text" name="txt_type_id" class="form-control" id="txt_type_id" hidden>
 
                     </div>
+                    <div class="row mt-5">
 
-                    <div class="form-group">
-                        <label for="song_photo">Music photo</label>
-                        <input type="file" name="song_photo" class="form-control" id="song_photo">
+                        <div class="col">
+                            <label for="song_name">Name</label>
+                            <input type="text" name="song_name" class="form-control" id="song_name" placeholder="Enter song name">
+                        </div>
+
+                        <div class="col">
+                            <label for="song_photo">Music photo</label>
+                            <input type="file" name="song_photo" class="form-control" id="song_photo">
+                        </div>
                     </div>
-
 
                     <div class="form-group">
                         <label for="song_mp3">karoke mp3</label>

@@ -95,51 +95,58 @@ $artists = get_all_artists($conn, $user_id);
 			<h2>Uploading new song</h2>
 
 			<form method="post" action="admin_song_upload.php" enctype="multipart/form-data">
-				<div class="form-group">
-					<label for="song_name">Song name</label>
-					<input type="text" name="song_name" class="form-control" id="song_name" placeholder="Enter song name">
+				<div class="row">
+					<div class="col">
+						<label for="song_name">Song name</label>
+						<input type="text" name="song_name" class="form-control" id="song_name" placeholder="Enter song name">
+					</div>
+
+
+					<div class="col">
+						<label for="aritst_id">Artist name</label>
+						<select name="aritst_id" required="" class="form-control">
+							<option value=""></option>
+							<?php foreach ($artists as $key => $a) : ?>
+								<option value="<?php echo $a['artist_id']; ?>"><?php echo $a['artist_name']; ?></option>
+							<?php endforeach ?>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<label for="type_id">Genre</label>
+						<select class="form-control" required id="type_id" name="type_id">
+							<option value="" selected>SELECT </option>
+							<?php
+							// $gen = mysqli_query($conn, "SELECT * from genre");
+							// if (mysqli_num_rows($gen) > 0) {
+							// 	while ($row = $gen->fetch_assoc()) {
+							?>
+							<option value="movies">Movies</option>
+							<option value="pop">Pop</option>
+							<option value="rock">rock</option>
+							<option value="Melody">Melody</option>
+
+							<!-- <option value="others">Others</option> -->
+						</select>
+
+					</div>
+					<div class="col">
+						<label for="song_photo">Song photo</label>
+						<input type="file" name="song_photo" class="form-control" id="song_photo">
+					</div>
 				</div>
 
 
-				<div class="form-group">
-					<label for="aritst_id">Artist name</label>
-					<select name="aritst_id" required="" class="form-control">
-						<option value=""></option>
-						<?php foreach ($artists as $key => $a) : ?>
-							<option value="<?php echo $a['artist_id']; ?>"><?php echo $a['artist_name']; ?></option>
-						<?php endforeach ?>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="type_id">Genre</label>
-					<select class="form-control" required id="type_id" name="type_id">
-						<option value="" selected>SELECT </option>
-						<?php
-						// $gen = mysqli_query($conn, "SELECT * from genre");
-						// if (mysqli_num_rows($gen) > 0) {
-						// 	while ($row = $gen->fetch_assoc()) {
-						?>
-						<option value="movies">Movies</option>
-						<option value="pop">Pop</option>
-						<option value="rock">rock</option>
-						<option value="Melody">Melody</option>
 
-						<!-- <option value="others">Others</option> -->
-					</select>
+				<div class="row">
+					<div class="col">
+						<label for="song_mp3">Song mp3</label>
+						<input type="file" accept=".mp3" name="song_mp3" class="form-control" id="song_mp3">
+					</div>
 
 				</div>
-				<div class="form-group">
-					<label for="song_photo">Song photo</label>
-					<input type="file" name="song_photo" class="form-control" id="song_photo">
-				</div>
-
-
-				<div class="form-group">
-					<label for="song_mp3">Song mp3</label>
-					<input type="file" accept=".mp3" name="song_mp3" class="form-control" id="song_mp3">
-				</div>
-
-				<button type="submit" class="float-right mt-md-3 btn btn-lg btn-dark">Add new song</button>
+				<button type="submit" class="float-right mt-md-3 btn btn-lg btn-primary">Add new song</button>
 
 			</form>
 

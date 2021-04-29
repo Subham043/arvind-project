@@ -153,7 +153,7 @@ $top_songs = get_top_songs($conn);
 							</div>
 						</div>
 						<div class="col text-center">
-							<a href="play.php?song=<?php echo ($s['song_id']); ?>" title=""><img width="100" src="img/play.png" alt=""></a>
+							<a href="play.php?song=<?php echo ($s['song_id']); ?>" title=""><img width="60" class="mt-3" src="img/play.png" alt=""></a>
 						</div>
 					</div>
 				</li>

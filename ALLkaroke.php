@@ -26,7 +26,7 @@ require_once("files/header.php");
             <li class="list-group-item">
                 <div class="row">
                     <div class="col">
-                        <img class="img-fluid rounded" width="100" src="uploads/karoke/<?php echo $s['photo']; ?>" alt="">
+                        <img class="img-fluid rounded" width="60" class="mt-3" src="uploads/karoke/<?php echo $s['photo']; ?>" alt="">
                     </div>
                     <div class="col">
                         <div class="row">

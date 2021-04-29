@@ -29,6 +29,9 @@
 					<a class="nav-link text-light" href="#">Genre</a>
 				</li> -->
 				<li class="nav-item">
+					<a class="nav-link text-light" href="all_songs.php">All Musics</a>
+				</li>
+				<li class="nav-item">
 					<a class="nav-link text-light" href="latest_tracks.php">Latest Tracks</a>
 				</li>
 

@@ -163,7 +163,7 @@ $artist_id = $s['artist_id'];
 					<p id="success"></p>
 				</div>
 				<div class="col-md-2">
-					<a class="btn btn-dark btn-block" target="_blank" href="download.php?song=<?= $song_id ?>">Download Mp3</a>
+					<a class="btn btn-dark btn-block ml-4" target="_blank" href="download.php?song=<?= $song_id ?>">Download Mp3</a>
 				</div>
 			</div>
 		</li>

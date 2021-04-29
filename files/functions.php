@@ -217,8 +217,12 @@ function get_all_songs($conn)
 	$res = $conn->query($sql);
 	$songs = array();
 	while ($data = $res->fetch_assoc()) {
+	
 		array_push($songs, $data);
 	}
+	
+	
+	
 	return $songs;
 }
 
