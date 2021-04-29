@@ -103,7 +103,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                             while ($result = $query->fetch_assoc()) {                ?>
                                                 <tr>
                                                     <td><?php echo htmlentities($cnt); ?></td>
-                                                    <td><?php echo $result['song_name']?></td>
+                                                    <td><?php echo $result['song_name'] ?></td>
                                                     <td>
                                                         <audio controls>
                                                             <source src="horse.ogg" type="audio/ogg">
@@ -114,7 +114,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                     </td>
                                                     <?php
                                                     $id = $result['user_id'];
-                                                    $sql2 = "SELECT first_name,last_name from users where `user_id` ='$id'";
+                                                    $sql2 = "SELECT first_name,last_name,username from users where `user_id` ='$id'";
                                                     $query2 = mysqli_query($conn, $sql2);
                                                     $arr = $query2->fetch_assoc();
                                                     // $name = $arr['first_name'] . " " . $arr['last_name'];
@@ -127,13 +127,14 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                     <?php
                                                     if ($result['verify'] == 0) {
                                                     ?>
-                                                        <td colspan="3"><a href="approve.php?song_id=<?php echo $result['song_id'] ?>&action=1" class="btn btn-info">Approve</a></td>
-
+                                                        <td colspan="2"><a href="approve.php?user_name=<?php echo $arr['username'] ?>&song_id=<?php echo $result['song_id'] ?>&action=1" class="btn btn-info">Approve</a>
+                                                            <a href="delete_songs.php?user_name=<?php echo $arr['username'] ?>&song_id=<?php echo ($result['song_id']); ?>" class="btn btn-danger" title="">Reject</a>
+                                                        </td>
                                                     <?php
                                                     } else {
-                                                        echo "<td>APPROVED"; ?>
-                                                        <a href="approve.php?song_id=<?php echo $result['song_id'] ?>&action=0" class="btn btn-danger">Reject</a>
-                                                        <a href="delete_songs.php?song_id=<?php echo ($result['song_id']); ?>" class="btn btn-danger" title="">Delete</a></td>
+                                                        echo "<td colspan='2'>APPROVED"; ?>
+                                                        <!-- <a href="approve.php?user_name=<?php echo $arr['username'] ?>&song_id=<?php echo $result['song_id'] ?>&action=0" class="btn btn-danger">Reject</a> -->
+                                                        <a href="delete_songs.php?user_name=<?php echo $arr['username'] ?>&song_id=<?php echo ($result['song_id']); ?>" class="btn btn-danger" title="">Delete</a></td>
 
                                                     <?php }
                                                     ?>
