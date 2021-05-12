@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2021 at 05:10 PM
+-- Generation Time: May 12, 2021 at 12:57 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -54,6 +54,13 @@ CREATE TABLE `artist` (
   `artist_photo` text NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `artist`
+--
+
+INSERT INTO `artist` (`artist_id`, `artist_name`, `artist_biography`, `artist_details`, `artist_photo`, `user_id`) VALUES
+(13, 'fasdf', 'sadfads', NULL, '1619696955_54121815041431_Folder.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -138,7 +145,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `first_name`, `last_name`, `reg_date`, `last_seen`, `photo`, `verify`, `code`, `block_status`) VALUES
-(1, 'mahi.manthu10@gmail.com', '$2y$10$jnV6JQtL/Sww8G4xNUCs0.3szx3V7lsb079UNiLP.l4mz.xBMo0u6', 'MAHANTESH', NULL, '2021-03-24', '2021-04-26', '', 0, '', 0),
+(1, 'mahi.manthu10@gmail.com', '$2y$10$jnV6JQtL/Sww8G4xNUCs0.3szx3V7lsb079UNiLP.l4mz.xBMo0u6', 'MAHANTESH', NULL, '2021-03-24', '2021-05-12', '', 0, '', 0),
 (2, 'jobs.manthu10@gmail.com', '$2y$10$qs693J9MpUS1PDvR1SuUH.Yo1Q6ijgzCx7zxzocNk5pl.GQriZdNC', 'MAHANTESH', NULL, '2021-03-24', '2021-04-26', '', 0, '', 0),
 (3, 'vj@gmail.com', '$2y$10$RQem.J2oPmwsPO19ZMwIUuvXucPPuMJ//PTYxPrKR09fxs.LcqO0G', 'vj', NULL, '2021-03-24', '2021-03-24', '', 0, '', 0);
 
@@ -232,19 +239,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `artist`
 --
 ALTER TABLE `artist`
-  MODIFY `artist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `artist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `downloads`
 --
 ALTER TABLE `downloads`
-  MODIFY `download_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `download_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `karoke`
 --
 ALTER TABLE `karoke`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `likes`
@@ -256,7 +263,7 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `songs`
 --
 ALTER TABLE `songs`
-  MODIFY `song_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `song_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -268,7 +275,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `views`
 --
 ALTER TABLE `views`
-  MODIFY `view_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `view_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
