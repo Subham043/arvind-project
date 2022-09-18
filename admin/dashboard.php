@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('includes/db.php');
+include('includes/root_link.php');
 if (strlen($_SESSION['alogin']) == 0) {
 	header('location:index.php');
 } else {
@@ -24,7 +25,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 		<!-- Bootstrap Core CSS -->
 		<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 		<!-- Custom CSS -->
-		<link href="css/style.css" rel='stylesheet' type='text/css' />
+		<link href="./css/style.css" rel='stylesheet' type='text/css' />
 		<link rel="stylesheet" href="css/morris.css" type="text/css" />
 		<!-- Graph CSS -->
 		<link href="css/font-awesome.css" rel="stylesheet">
@@ -48,6 +49,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 				<div class="mother-grid-inner">
 					<!--header start here-->
 					<?php include './includes/header.php' ?>
+					<?php include './includes/sidebarmenu.php' ?>
 
 					<?php
 					include '../files/functions.php';
@@ -59,7 +61,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 					<div class="clearfix"></div>
 				</div>
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>DashBoard</li>
+					<li class="breadcrumb-item"><a href="<?php echo $root_link_admin; ?>dashboard.php">Home</a><i class="fa fa-angle-right"></i>DashBoard</li>
 				</ol>
 				<!--//four-grids here-->
 				<div class="col col-md-12">
@@ -74,9 +76,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 								$views = $v['counts'];
 								?>
 							</span>
-							<div class="progress">
+							<a href="<?php $root_link_admin;?>dashboard.php"><div class="progress">
 								<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo "$views%"; ?>"><?php echo $v['counts']; ?></div>
-							</div>
+							</div></a>
 
 							Users<span class="pull-right strong">
 								<?php
@@ -85,9 +87,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 								$users = $uc['uc'];
 								echo $users;
 								?></span>
-							<div class="progress">
+							<a href="<?php $root_link_admin;?>manage-users.php"><div class="progress">
 								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo "$users%" ?>"><?php echo $users ?></div>
-							</div>
+							</div></a>
 
 							Downloads<span class="pull-right strong">
 								<?php
@@ -97,9 +99,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 								echo $download;
 								?>
 							</span>
-							<div class="progress">
+							<a href="<?php $root_link_admin;?>dashboard.php"><div class="progress">
 								<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="8" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo ($download / $s) . "%"; ?>"><?php echo $download ?></div>
-							</div>
+							</div></a>
 						</div>
 
 					</div>

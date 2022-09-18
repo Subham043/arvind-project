@@ -2,6 +2,7 @@
 session_start();
 error_reporting(0);
 include('includes/db.php');
+include('includes/root_link.php');
 if (strlen($_SESSION['alogin']) == 0) {
     header('location:index.php');
 } else {
@@ -73,7 +74,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                 </div>
                 <!--heder end here-->
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>Manage Karoke</li>
+                    <li class="breadcrumb-item"><a href="<?php echo $root_link_admin; ?>dashboard.php">Home</a><i class="fa fa-angle-right"></i>Manage Karoke</li>
                 </ol>
                 <div class="agile-grids">
                     <!-- tables -->

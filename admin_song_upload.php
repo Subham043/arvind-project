@@ -16,16 +16,30 @@ if (isset($_POST['song_name'])) {
 	if (isset($_FILES['song_photo']['error'])) {
 		if ($_FILES['song_photo']['error'] == 0) {
 
+			// $target_dir = __DIR__;
+			// $target_file = $target_dir . $_FILES["song_photo"]["name"];
+			// // echo __DIR__;exit;
+			// $uploadOk = 1;
+			// $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+			// if (!move_uploaded_file($_FILES["song_photo"]["tmp_name"], $target_file)) {
+			// 	echo "The file ". ( basename( $_FILES["song_photo"]["tmp_name"])). " has been uploaded.";
+			// } else {
+			// echo "Sorry, there was an error uploading your file.";
+			// }
+			// exit;
+
 			$target_dir = "uploads/";
 
 			$song_photo = time() . "_" . rand(100000, 10000000) . rand(100000, 10000000) . "_" . $_FILES["song_photo"]["name"];
+			$song_photo = $_FILES["song_photo"]["name"];
 
 			$song_photo = str_replace(" ", "_", $song_photo);
 			$song_photo = urlencode($song_photo);
 
 
 			$source = $_FILES["song_photo"]["tmp_name"];
-			$destinatin = $target_dir . $song_photo;
+			$destinatin = $target_dir . basename($song_photo);
 
 			if (move_uploaded_file($source, $destinatin)) {
 			} else {
@@ -37,8 +51,7 @@ if (isset($_POST['song_name'])) {
 
 	if (isset($_FILES['song_mp3']['error'])) {
 		if ($_FILES['song_mp3']['error'] == 0) {
-
-			$target_dir = "uploads/";
+			$target_dir = "./uploads/";
 
 			$song_mp3 = time() . "_" . rand(100000, 10000000) . rand(100000, 10000000) . "_" . $_FILES["song_mp3"]["name"];
 

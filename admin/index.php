@@ -34,7 +34,7 @@ if (isset($_POST['login'])) {
 		}
 	</script>
 	<!-- Bootstrap Core CSS -->
-	<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+	<link href="./css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 	<!-- Custom CSS -->
 	<link href="css/style.css" rel='stylesheet' type='text/css' />
 	<link rel="stylesheet" href="css/morris.css" type="text/css" />
