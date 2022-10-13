@@ -76,6 +76,12 @@ if (isset($_POST['song_name'])) {
 	$songtype_id = $_POST['type_id'];
 
 	$verify = 0;
+	$SQL = "SELECT * FROM songs WHERE song_name like '".$song_name."' OR song_name like '%".$song_name."' OR song_name like '".$song_name."%'";
+	$data = $conn->query($SQL);
+	if ($data->num_rows > 0) {
+		header("Location: admin_song_upload.php?error=Song already exists");
+		die();
+	}
 	$SQL = "INSERT INTO songs(
 						song_mp3,song_photo,aritst_id,song_name,verify,user_id,`type_id`
 					)VALUES(
@@ -105,6 +111,13 @@ $artists = get_all_artists($conn, $user_id);
 	<div class="row pl-0">
 		<?php include 'files/admin_side_bar.php'; ?>
 		<div class="col-md-8">
+		<?php if (!empty($_GET['error'])) { ?>
+			<div class="alert alert-danger  m-3">
+				<?php
+				echo ($_GET['error']);
+				?>
+			</div>
+		<?php	} ?>
 			<h2>Uploading new song</h2>
 
 			<form method="post" action="admin_song_upload.php" enctype="multipart/form-data">

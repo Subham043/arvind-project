@@ -68,7 +68,7 @@ if (isset($_SESSION['user'])) {
 										<span class="input-group-addon">
 											<i class="fa fa-key"></i>
 										</span>
-										<input type="text" class="form-control" id="cpass" required name="cpass" placeholder="">
+										<input type="password" class="form-control" id="cpass" required name="cpass" placeholder="">
 									</div>
 									<div class="form-group">
 										<p class="text-danger" id="msg"></p>

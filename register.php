@@ -36,9 +36,9 @@
 
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link text-light" href="ALLkaroke.php">Karoke Musics</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a class="nav-link text-light" href="genre.php">Genre</a>
                 </li>

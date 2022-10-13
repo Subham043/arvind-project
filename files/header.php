@@ -24,18 +24,18 @@
 	
 			<div class="collapse navbar-collapse " id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<a class="nav-link text-light" href="ALLkaroke.php">BGM</a>
-					</li>
+					</li> -->
 					<!-- <li class="nav-item">
 						<a class="nav-link text-light" href="#">Genre</a>
 					</li> -->
 					<li class="nav-item">
 						<a class="nav-link text-light" href="all_songs.php">All Musics</a>
 					</li>
-					<li class="nav-item">
+					<!-- <li class="nav-item">
 						<a class="nav-link text-light" href="latest_tracks.php">Latest Tracks</a>
-					</li>
+					</li> -->
 	
 					<li class="nav-item">
 						<?php if (isset($_SESSION['user'])) { ?>

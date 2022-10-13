@@ -17,9 +17,9 @@
 			<li><a href="manage_songs.php"><i class="fa fa-list" aria-hidden="true"></i> <span>Manage Songs</span>
 					<div class="clearfix"></div>
 				</a></li>
-			<li><a href="manage_karoke.php"><i class="fa fa-list" aria-hidden="true"></i> <span>Manage BGM</span>
+			<!-- <li><a href="manage_karoke.php"><i class="fa fa-list" aria-hidden="true"></i> <span>Manage BGM</span>
 					<div class="clearfix"></div>
-				</a></li>
+				</a></li> -->
 
 			<li><a href="logout.php"><i class="fa fa-list" aria-hidden="true"></i> <span>Logout</span>
 					<div class="clearfix"></div>
